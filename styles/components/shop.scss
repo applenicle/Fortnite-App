@@ -1,0 +1,62 @@
+.shop {
+  &__title {
+    font-size: 36px;
+  }
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 20px 10px;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  &__link {
+  }
+  &__item {
+    position: relative;
+    width: 250px;
+  }
+  &__img {
+    height: 300px;
+    max-width: 250px;
+    object-fit: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  &__text {
+    &-content {
+      background: rgba($color, 0.192);
+      backdrop-filter: blur(10px);
+      position: absolute;
+      text-align: center;
+      bottom: 0;
+      color: $color-dk;
+      width: 100%;
+      max-width: 250px;
+    }
+    &-price {
+      display: flex;
+      padding: 10px;
+      font-size: 20px;
+      align-items: center;
+      text-align: center;
+      justify-content: center;
+      background: $bg-vbucks;
+      span {
+        color: $color-dk;
+      }
+      img {
+        margin-right: 5px;
+        width: 30px;
+        height: 30px;
+      }
+    }
+    &-type {
+      margin: 5px 0;
+    }
+    &-name {
+      margin-top: 5px;
+      font-size: 18px;
+    }
+  }
+}
