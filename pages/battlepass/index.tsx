@@ -28,6 +28,7 @@ const BattlePass = () => {
         {data.map((obj: any) => (
           <div>
             {/* {obj?.displayInfo} */}
+            {obj.name}
             <img className="img" src={obj.item.images.background} alt="" />
             {obj.price.amount} цена звезд
             {obj.battlepass == 'free' ? 'free' : ''}

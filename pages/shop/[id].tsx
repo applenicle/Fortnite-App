@@ -1,6 +1,6 @@
 import React from 'react';
 import { useRouter } from 'next/router';
-import { Details } from '@/components';
+// import { Details } from '@/components';
 import axios from 'axios';
 
 const ShopDetails = ({ data }: any) => {
