@@ -1,1 +1,13 @@
-
+.fish {
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  display: grid;
+  &__inner {
+  }
+  &__img {
+    cursor: pointer;
+    background: #000;
+    max-width: 150px;
+    width: 100%;
+    object-fit: cover;
+  }
+}

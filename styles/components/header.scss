@@ -6,9 +6,10 @@
   left: 0;
   padding: 15px;
   z-index: 100;
-  background: $bg-side-dk;
+  background: var(--sidebar-background-color);
   &__logo {
     text-align: center;
+    margin-top: 90px;
     img {
       max-width: 100px;
       object-fit: cover;
@@ -21,47 +22,31 @@
     margin: 10px 0;
   }
   &__menu {
-  }
-  &__list {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
   }
   &__item {
+    margin-top: 20px;
   }
   &__link {
-    padding: 25px;
-    margin-top: 10px;
     display: flex;
     align-items: center;
+    text-align: center;
+    padding: 20px 10px;
+
     &:hover {
-      padding: 25px;
+      padding: 20px 10px;
+      width: 100%;
       border-radius: $radius;
-      background: $color-hover-dk;
-      color: $color-dk;
+      background: var(--text--hover);
+      color: var(--text--color);
     }
     svg {
-      margin-right: 10px;
-    }
-  }
-  &__theme {
-    padding: 3px;
-    margin: 25px;
-    cursor: pointer;
-    border-radius: $radius;
-    display: flex;
-    background: $search-dk;
-    justify-content: space-between;
-    align-items: center;
-    svg {
-      margin-right: 8px;
-      margin-left: 4px;
-    }
-    &-selected {
-      border-radius: calc($radius - 2px);
-      padding: 12px 16px;
-      background: $color-hover-dk;
-    }
-    &-selected:first-child {
-      background: $search-dk;
-      color: $search-color-dk;
+      max-width: 20px;
+      height: 20px;
+      margin: 0 10px;
     }
   }
   &__input {
@@ -70,9 +55,11 @@
     text-align: center;
     z-index: 1;
     input {
-      color: $search-color-dk;
+      // color: $search-color-dk;/
+      color: #fff;
       width: 100%;
-      background: $search-dk;
+      // background: $search-dk;
+      background: #000;
       border: none;
       padding: 20px 55px;
       border-radius: $radius;
@@ -85,6 +72,17 @@
       position: absolute;
       z-index: 4;
       cursor: pointer;
+    }
+  }
+  &__open {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    svg {
+      rotate: 90deg * 2;
+      cursor: pointer;
+      width: 30px;
+      height: 30px;
     }
   }
 }
