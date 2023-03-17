@@ -1,22 +1,23 @@
 import React from 'react';
 import axios from 'axios';
-import { Layout } from '@/components';
+import { BattlepassSlider, Layout } from '@/components';
+import moment from 'moment';
 
 const BattlePass = () => {
-  const env = process.env.NEXT_PUBLIC_FORTNITE_API_KEY;
   const [data, setData] = React.useState([]);
 
   const fetchData = async (url: string) => {
     await axios
       .get(url, {
-        headers: { Authorization: env },
+        headers: { Authorization: process.env.NEXT_PUBLIC_FORTNITE_API_KEY },
       })
       .then(({ data }: any) => {
-        console.log(data.rewards);
-        setData(data.rewards);
+        console.log(data);
+        setData(data);
       });
   };
 
+  // const dataBattlePass = [data]?.rewards;
   React.useEffect(() => {
     fetchData('https://fortniteapi.io/v2/battlepass?lang=en&season=current');
     return () => {};
@@ -24,19 +25,28 @@ const BattlePass = () => {
 
   return (
     <Layout>
-      <ul className="grid-bp">
-        {data.map((obj: any) => (
-          <div>
-            {/* {obj?.displayInfo} */}
-            {obj.name}
-            <img className="img" src={obj.item.images.background} alt="" />
-            {obj.price.amount} цена звезд
-            {obj.battlepass == 'free' ? 'free' : ''}
-            <br />
-            {obj.page} номер стр
+      <div className="battlepass">
+        {[data].map((obj: any, i: number) => (
+          <div key={i}>
+            <div className="battlepass__title">
+              {obj?.displayInfo?.chapterSeason}
+              <div>
+                Season ends:
+                <span>
+                  {moment(obj?.seasonDates?.end).endOf('minutes').fromNow(obj?.seasonDates?.begin)}
+                </span>
+              </div>
+            </div>
+            <BattlepassSlider data={data} />
           </div>
         ))}
-      </ul>
+        {/* {data.displayInfo?.chapterSeason} */}
+
+        {/* {data.map((obj: any, i: number) => (
+          <div key={i}>
+          </div>
+        ))} */}
+      </div>
     </Layout>
   );
 };
