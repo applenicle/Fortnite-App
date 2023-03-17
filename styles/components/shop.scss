@@ -19,6 +19,7 @@
     position: relative;
     width: 250px;
     margin-top: 0.5em;
+    cursor: pointer;
   }
   &__img {
     height: 300px;
@@ -27,6 +28,13 @@
     background-position: center;
     background-repeat: no-repeat;
   }
+
+  // &__texture {
+  //   position: absolute;
+  //   max-width: 250px;
+  //   width: 100%;
+  //   z-index: -1;
+  // }
   &__text {
     &-content {
       background: rgba(var(--bg-color), 0.192);
@@ -34,7 +42,7 @@
       position: absolute;
       text-align: center;
       bottom: 0;
-      color: var(--text--color);
+      color: $color-text-dark-mode;
       width: 100%;
       max-width: 250px;
     }
@@ -48,7 +56,7 @@
       background: #000;
       background: $bg-vbucks;
       span {
-        color: var(--text--color);
+        color: $color-text-dark-mode;
       }
       img {
         margin-right: 5px;

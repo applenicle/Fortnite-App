@@ -6,7 +6,7 @@
     align-items: center;
     padding: 5px 6px;
     border-radius: $radius * 1.5;
-    background: var(--sidebar-search-text-color);
+    background: var(--sidebar-search-background-color);
     margin: 50px 0;
   }
   &__theme {
@@ -17,9 +17,10 @@
     padding: 14px 1px;
     margin: 3px;
     border-radius: $radius;
-    background: var(--sidebar-search-text-color);
+    color: var(--sidebar-search-text-color);
     &:first-child {
-      background: var(--sidebar-search-background-color);
+      background: var(--sidebar-search-text-color);
+      color: var(--sidebar-background-color);
     }
     svg {
       margin-right: 10px;
@@ -32,9 +33,10 @@
   .navbar {
     &__theme {
       background: var(--text--hover);
+      color: var(--text--color);
       &:first-child {
         background: var(--sidebar-search-background-color);
-        color: var(--text--hover);
+        color: var(--sidebar-search-text-color);
       }
       svg {
         margin-right: 10px;
