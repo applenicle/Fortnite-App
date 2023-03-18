@@ -1,10 +1,16 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import { mapAPI } from './services/MapsService';
+import { nameAPI } from './services/ShopService';
 import ShopSlice from './slices/Shop';
 
+const rootReducer = combineReducers({
+  ShopSlice,
+  [nameAPI.reducerPath]: nameAPI.reducer,
+});
+
 export const store = configureStore({
-  reducer: {
-    ShopSlice,
-  },
+  reducer: rootReducer,
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(nameAPI.middleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;
