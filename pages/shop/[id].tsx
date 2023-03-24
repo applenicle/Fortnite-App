@@ -1,74 +1,31 @@
+import { Layout } from '@/components';
+import Details from '@/components/Details';
 import React from 'react';
-import { useRouter } from 'next/router';
-// import { Details } from '@/components';
-import axios from 'axios';
 
-const ShopDetails = ({ data }: any) => {
-  const { shop } = data;
-  console.log(shop);
-  // const router = useRouter();
-  // const id = router.query.id;
-  // const name = router.query.displayName;
-  // console.log(arr);
+export const getServerSideProps = async (context: any) => {
+  let id = context.params.id;
+  const res = await fetch(`https://fortniteapi.io/v2/items/get?id=${id}&lang=en`, {
+    headers: {
+      Authorization: `${process.env.NEXT_PUBLIC_FORTNITE_API_KEY}`,
+    },
+  });
+  const data = await res.json();
+  return {
+    props: {
+      item: data.item,
+    },
+  };
+};
 
+const ShopDetails = ({ item }: any) => {
+  console.log(item);
   return (
-    <div>
-      ShopDetails
-      {/* {shop.map((obj) => (
-        <>{obj.displayName}</>
-      ))} */}
-      {/* {name} */}
-      <br />
-      {/* <img className="img" src={displayAssets[0].background} alt={obj.granted[0].id} /> */}
-      {/* {id} */}
-    </div>
+    <Layout>
+      {[item].map((obj: any) => (
+        <Details key={obj.id} {...obj} />
+      ))}
+    </Layout>
   );
 };
 
 export default ShopDetails;
-
-const env = process.env.NEXT_PUBLIC_FORTNITE_API_KEY;
-
-export const getServerSideProps = async ({ query }: any) => {
-  try {
-    const result = await axios.get('https://fortniteapi.io/v2/shop?lang=en', {
-      headers: { Authorization: env },
-    });
-    const data = result.data;
-    return {
-      props: {
-        data,
-      },
-    };
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-// export const getStaticPaths = async () => {
-//   return {
-//     props: [
-//       {
-//         data: {
-//           mainId: 1,
-//         },
-//       },
-//     ],
-//   };
-// };
-
-// export const getStaticProps = async () => {
-// try {
-//   const result = await axios.get('https://fortniteapi.io/v2/shop?lang=en', {
-//     headers: { Authorization: env },
-//   });
-//   const data = result.data;
-//   return {
-//     props: {
-//       data,
-//     },
-//   };
-// } catch (error) {
-//   console.log(error);
-// }
-// };
