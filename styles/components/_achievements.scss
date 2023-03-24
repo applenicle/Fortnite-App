@@ -1,0 +1,57 @@
+.achivements{
+  &__title{
+    margin: 2rem 0;
+    font-size: 32px;
+    text-transform: uppercase;
+    text-align: center;
+  }
+
+  &__inner{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-gap: 1em;
+    margin: 1rem 0;
+  }
+  &__box{
+    position: relative;
+    margin: 2rem 0;
+  }
+  &__content{
+    background: var(--sidebar-background-color);
+    padding: 20px;
+  }
+
+  &__image{
+    background: #4FAAE2;
+    padding: 10px;
+    clip-path: polygon(10% 10%, 100% 6%, 96% 99%, 2% 94%);
+    img{
+      clip-path: polygon(10% 10%, 100% 6%, 96% 100%, 2% 95%);
+      width: 100%;
+      object-fit: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+  }
+  &__text{
+    color: var(--text--color);
+    text-align: center;
+    min-height: 160px;
+    h3{
+      margin: 15px 0;
+      font-size: 22px;
+    }
+    p{
+      
+    }
+  }
+  &--bar{
+    position: absolute;
+    height: 40px;
+    width: 100%;
+    top: -30px;
+    background: #4FAAE2;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 80%, 0% 100%);
+  }
+}
