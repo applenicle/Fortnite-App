@@ -1,10 +1,12 @@
 import React from 'react';
-import { Layout, ShopList, Skeleton, Timer } from '../../components';
-import { nameAPI as shopAPI } from '@/redux/services/ShopService';
+import { useGetAllShopQuery } from '@/redux/services/FortniteApi';
+import { Layout, LayoutError, LayoutLoading, LayoutNoFetch } from '@/layouts';
+import { ShopList, Skeleton, Timer } from '@/components';
+
 
 const Shop = () => {
-  const { data: shop, error, isLoading } = shopAPI.useFetchAllShopQuery('shop');
-  const dataShop = shop?.shop;
+  const { data: allShop, error, isLoading } = useGetAllShopQuery()
+  const dataShop = allShop?.shop;
 
   let obj: any = {};
   let arr: any = [];
@@ -21,16 +23,16 @@ const Shop = () => {
   const skeleton = [...new Array(15)].map((_: any, i: number) => <Skeleton key={i} />);
   if (isLoading) {
     return (
-      <Layout>
+      <LayoutLoading>
         <div className="shop__list">{skeleton}</div>;
-      </Layout>
+      </LayoutLoading>
     );
   }
   if (error) {
-    <>ERROR TRY TO REFRESH PAGE</>;
+    <LayoutError>ERROR TRY TO REFRESH PAGE</LayoutError>;
   }
-  if (!shop) {
-    <h3>NO DATA</h3>;
+  if (!allShop) {
+    <LayoutNoFetch>NO DATA</LayoutNoFetch>;
   }
 
   return (
