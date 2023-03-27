@@ -1,7 +1,8 @@
 .achivements{
   &__title{
     margin: 2rem 0;
-    font-size: 32px;
+    font-size: $xl4;
+    line-height: $xl4line;
     text-transform: uppercase;
     text-align: center;
   }
@@ -10,7 +11,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     grid-gap: 1em;
-    margin: 1rem 0;
+    margin: $base 0;
   }
   &__box{
     position: relative;
@@ -18,12 +19,12 @@
   }
   &__content{
     background: var(--sidebar-background-color);
-    padding: 20px;
+    padding: $xl;
   }
 
   &__image{
     background: #4FAAE2;
-    padding: 10px;
+    padding: $xs;
     clip-path: polygon(10% 10%, 100% 6%, 96% 99%, 2% 94%);
     img{
       clip-path: polygon(10% 10%, 100% 6%, 96% 100%, 2% 95%);
@@ -37,13 +38,15 @@
   &__text{
     color: var(--text--color);
     text-align: center;
-    min-height: 160px;
+    min-height: 200px;
     h3{
       margin: 15px 0;
-      font-size: 22px;
+      font-size: $xl;
+      line-height: $xlline;
     }
     p{
-      
+      font-size: $base;
+      line-height: $baseline;
     }
   }
   &--bar{

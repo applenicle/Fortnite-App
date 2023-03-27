@@ -1,6 +1,7 @@
 .shop {
   &__title {
-    font-size: 36px;
+    font-size: $xl4;
+    line-height: $xl4;
   }
   &__list {
     display: grid;
@@ -28,13 +29,6 @@
     background-position: center;
     background-repeat: no-repeat;
   }
-
-  // &__texture {
-  //   position: absolute;
-  //   max-width: 250px;
-  //   width: 100%;
-  //   z-index: -1;
-  // }
   &__text {
     &-content {
       background: rgba(var(--bg-color), 0.192);
@@ -49,7 +43,8 @@
     &-price {
       display: flex;
       padding: 10px;
-      font-size: 20px;
+      font-size: $xl;
+      line-height: $xl;
       align-items: center;
       text-align: center;
       justify-content: center;
@@ -68,8 +63,8 @@
       margin: 5px 0;
     }
     &-name {
-      margin-top: 5px;
-      font-size: 18px;
+      margin: 5px 0;
+      font-size: $xl;
     }
   }
 }

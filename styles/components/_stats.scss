@@ -11,7 +11,7 @@
     }
   }
   &__nickname{
-    font-size: 2rem;
+    font-size: $xl4;
     text-align: center;
     margin: 2rem;
   }
@@ -52,12 +52,13 @@
   }
   &__container{
     &-title{
-      font-size: 0.75rem;
+      font-family: "BurbankBigRegular-Black";
+      font-size: $sm;
       color:var(--text--color);
     }
     &-value{
       margin: 3px 0;
-      font-size: 1rem;
+      font-size: $base;
       color: var(--text--color);
     }
     &-bar{
