@@ -2,48 +2,39 @@ import Link from 'next/link';
 import React from 'react';
 
 const ShopList = ({ data }: any) => {
-  // const [dataTimer, setDataTimer] = React.useState(0);
-  React.useEffect(() => {
-    // const timerId = setInterval(() => {
-    // setDataTimer((count: any) => count + 1);
-    // console.log(dataTimer);
-    // }, 3000);
-    // return () => clearInterval(timerId);
-  }, []);
-  // console.log(data.displayAssets.displayAsset);
-  // console.log(data.displayName);
-  // const img = data.map((obj) => console.log(obj.displayAssets[0].background));
-  // const map = data?.displayAssets?.map((obj: any) => console.log(obj));
-  // console.log(data);
-  // console.log([data.displayAssets[0]]);
-  // const img = [];
+  // если нет бг
+  // obj.granted[0]?.images?.background
 
-  // data.map((item) => {
-  // console.log(item.displayAssets.length);
-
-  // const imageURL = item[item.displayAssets.length];
-  // });
-  // const imgArr = [data[0].displayAssets[0]];
-
-  // // data[0].displayAssets;
-
-  // const image = imgArr[dataTimer % imgArr.length];
-  // console.log(image);
-  // const imageURL = image[dataTimer % image.length];
-  // console.log(imageURL);
-
+  // bg
+  // obj.displayAssets[0].background
   return (
     <>
       {data?.map((obj: any) => (
-        <li key={obj.mainId}>
-          <h1>{obj[0]?.section?.name}</h1>
-          <Link href={`shop/${obj.displayName}`}>
-            <img className="img" src={obj.displayAssets[0].background} alt={obj.mainId} />
+        <li className="shop__item" key={obj.mainId}>
+          <Link className="shop__link" href={`shop/${obj.mainId}`}>
+            <div className="shop__img-url">
+              <img
+                className="shop__img"
+                src={obj.displayAssets[0]?.background }
+                  // ==  undefined ? obj.displayAssets[0]?.background : obj.granted[0]?.images?.background}
+                loading="lazy"
+                alt={obj.mainId}
+              />
+            </div>
           </Link>
-          <div>
-            {obj.price.finalPrice}
-            <img className="vbucks" src="https://fortnite-api.com/images/vbuck.png" alt="vbucks" />
-            {obj.displayName}
+          <div className="shop__text-content">
+            <div>
+              <h4 className="shop__text-name">{obj.displayName}</h4>
+              <p className="shop__text-type">{obj.granted[0].type.name}</p>
+            </div>
+            <div className="shop__text-price">
+              <img
+                className="vbucks"
+                src="https://fortnite-api.com/images/vbuck.png"
+                alt="vbucks"
+              />
+              <span>{obj.price?.finalPrice}</span>
+            </div>
           </div>
         </li>
       ))}
