@@ -1,6 +1,9 @@
 import React from 'react'
 
 const Stats = ({name, global_stats,accountLevelHistory}:any) => {
+  
+  
+  
   return (
     <div>
       <h3 className='stats__nickname'>{name}</h3>

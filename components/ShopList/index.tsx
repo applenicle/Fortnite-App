@@ -2,22 +2,15 @@ import Link from 'next/link';
 import React from 'react';
 
 const ShopList = ({ data }: any) => {
-  // если нет бг
-  // obj.granted[0]?.images?.background
-
-  // bg
-  // obj.displayAssets[0].background
   return (
     <>
       {data?.map((obj: any) => (
-        <li className="shop__item" key={obj.mainId}>
+        <li className="shop__item" key={obj.offerId}>
           <Link className="shop__link" href={`shop/${obj.mainId}`}>
             <div className="shop__img-url">
               <img
                 className="shop__img"
-                src={obj.displayAssets[0]?.background }
-                  // ==  undefined ? obj.displayAssets[0]?.background : obj.granted[0]?.images?.background}
-                loading="lazy"
+                src={obj.displayAssets[0]?.background ==  undefined ? obj.displayAssets[0]?.background : obj.granted[0]?.images?.background }
                 alt={obj.mainId}
               />
             </div>

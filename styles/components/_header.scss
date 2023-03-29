@@ -10,7 +10,7 @@
   background: var(--sidebar-background-color);
   &__logo {
     text-align: center;
-    margin-top: 90px;
+    margin-top: 35px;
     img {
       max-width: 100px;
       object-fit: cover;
@@ -27,17 +27,21 @@
     align-items: center;
     justify-content: center;
     flex-direction: row;
-    margin-top: 80px;
+    // margin-top: 80px;
   }
   &__item {
     margin-top: 20px;
+    &--active{
+      background: var(--text--hover);
+      border-radius: $radius;
+      margin-top: 20px;
+    }
   }
   &__link {
     display: flex;
     align-items: center;
     text-align: center;
     padding: 20px 10px;
-
     &:hover {
       padding: 20px 10px;
       width: 100%;
@@ -57,7 +61,7 @@
     text-align: center;
     z-index: 1;
     input {
-      // color: $search-color-dk;/
+      // color: $search-color-dk;
       color: #fff;
       width: 100%;
       // background: $search-dk;
@@ -80,6 +84,7 @@
     display: flex;
     align-items: center;
     justify-content: right;
+    margin-top: 25px;
     svg {
       rotate: 90deg * 2;
       cursor: pointer;
@@ -87,4 +92,41 @@
       height: 30px;
     }
   }
+  &__language{
+    text-align: center;
+    h1{
+      font-size: $xl;
+    }
+    &-list {
+      text-align: center;
+      display: none;
+      background: var(--sidebar-background-color);
+      color: var(--text--color);
+      font-size: $sm;
+      font-weight: $sm;
+    }
+    div {
+      margin: 10px 0;
+      svg{
+        max-width: 20px;
+        height: 20px;
+        cursor: pointer;
+      }
+    }
+    &-item{
+      margin-top: 8px;
+      border-radius: $radius;
+      cursor: pointer;
+      width: 100%;
+      &--active{
+        padding: 8px;
+        background: var(--sidebar-search-background-color);
+      }
+    }
+  }
+}
+
+
+.language-open {
+  display: block;
 }

@@ -9,45 +9,58 @@ import {
   faTags,
 } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
-import React from 'react';
+import { useState } from 'react';
 import Theme from '../Theme';
+import Language from '../Language';
+import { useRouter } from 'next/router';
 
 const Header = () => {
-  const [open, setOpen] = React.useState(true);
+  const { locale } = useRouter()
+  const [open, setOpen] = useState(true);
+  const [activeLink, setActiveLink] = useState(0);
+  
+  const onSelectItem = (index:number) => {
+    setActiveLink(index);
+  };
 
   const navigation = [
 		{
       icon: faTags,
 			label: 'Daily Shop',
-			href: '/shop',
+			href: `/shop`,
+      locale: {locale},
 		},
     {
       icon: faMap,
 			label: 'Current map & map history',
-			href: '/map',
+			href: `/map`,
+      locale: {locale},
 		},
 		{
       icon: faScroll,
 			label: 'Challenges',
-			href: '/challenges',
+			href: `/challenges`,
+      locale: {locale},
 		},
     {
       icon: faListOl,
 			label: 'Battlepass',
-			href: '/battlepass',
+			href: `/battlepass`,
+      locale: {locale},
 		},
     {
       icon: faStar,
 			label: 'Achievements list',
-			href: '/achievements',
+			href: `/achievements`,
+      locale: {locale},
 		},
 		{
       icon: faFish,
 			label: 'Fish List',
-			href: '/fish',
+			href: `/fish`,
+      locale: {locale},
 		},
 	];
-
 
   return (
     <>
@@ -57,23 +70,33 @@ const Header = () => {
         </div>
         <div className="navbar__menu">
           <ul className="navbar__list">
-            { navigation.map(({href, icon, label}, i) => (
-            <li key={i} className="navbar__item">
-              <Link className="navbar__link" href={href}>
+            { navigation && navigation.map(({href, icon, label}, i:number) => (
+            <li
+              key={i}
+              className={activeLink === i ? 'navbar__item--active' : "navbar__item"} 
+            >
+              <Link 
+                className="navbar__link" 
+                href={href} 
+                locale={locale}
+                onClick={() => onSelectItem(i)} 
+              >
                 <FontAwesomeIcon icon={icon} />
                 <span>{label}</span>
               </Link>
-            </li>))}
+            </li>
+            ))}
           </ul>
         </div>
         <div>
           <Theme />
         </div>
-        {/* <div className="navbar__language">
-          <FontAwesomeIcon icon={faFlag} />
-          <Language />
-        </div> */}
-        <div className="navbar__logo">LOGO</div>
+          <Language/>
+        <div className="navbar__logo">
+          <Link href='/'>
+            <h3>{open == false ? 'FS' : 'FortniteStats'}</h3>
+          </Link>
+        </div>
       </nav>
     </>
   );

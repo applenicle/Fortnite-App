@@ -1,8 +1,9 @@
-import { Layout } from '@/components';
 import axios from 'axios';
 import React from 'react'
+import { Layout } from '@/layouts';
+import { NextPage } from 'next';
 
-const Achievements = () => {
+const Achievements: NextPage = () => {
   const [data, setData] = React.useState([])
   const fetchData = (url: string) => {
     axios

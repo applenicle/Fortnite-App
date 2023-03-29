@@ -1,1 +1,13 @@
-
+.timer{
+  margin: $base;
+  text-align: center;
+  h1{
+    font-size: $xl4;
+    line-height: $xl4;
+  }
+  h2{
+    font-size: $xl;
+    margin: $xs;
+    font-family: 'Rubik', sans-serif;
+  }
+}

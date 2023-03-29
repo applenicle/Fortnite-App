@@ -1,15 +1,16 @@
-import { Layout } from '@/components';
+import { Layout } from '@/layouts';
 import axios from 'axios';
+import { NextPage } from 'next';
 import React from 'react';
 
-const Fish = () => {
-  const env = process.env.NEXT_PUBLIC_FORTNITE_API_KEY;
+const Fish: NextPage = () => {
   const [data, setData] = React.useState([]);
+  const [open, setOpen] = React.useState(true);
 
   const fetchData = async (url: string) => {
     await axios
       .get(url, {
-        headers: { Authorization: env },
+        headers: { Authorization: process.env.NEXT_PUBLIC_FORTNITE_API_KEY },
       })
       .then(({ data }: any) => {
         console.log(data.fish);
@@ -23,10 +24,20 @@ const Fish = () => {
   }, []);
   return (
     <Layout>
-      <ul className="grid">
+      <ul className="fish">
         {data.map((obj: any) => (
-          <div key={obj.id}>
-            <img className="img" src={obj.image} alt={obj.id} />
+          <div>
+            <div onClick={() => setOpen(!open)} className="fish__inner" key={obj.id}>
+              <img className="fish__img" src={obj.image} alt={obj.id} />
+              <h3>{obj.name}</h3>
+            </div>
+            <div className={open === false ? 'modal modal__open' : 'modal'}>
+              {/* <h3>{obj.name}</h3> */}
+              {/* <p>{obj.details}</p> */}
+              {/* <span>Rarity: {obj.rarity}</span> */}
+              {/* <div>Макс колво{obj.maxStackSize}</div> */}
+              {/* <p>Description: {obj.description}</p> */}
+            </div>
           </div>
         ))}
       </ul>

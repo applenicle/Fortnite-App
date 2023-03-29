@@ -3,12 +3,13 @@ import { useRouter } from 'next/router';
 import { useGetDetailsShopQuery } from '@/redux/services/FortniteApi';
 import { Details } from '@/components';
 import { Layout, LayoutError, LayoutLoading, LayoutNoFetch } from '@/layouts';
+import { NextPage } from 'next';
 
 
-const ShopDetails = () => {
-  const router = useRouter()
-  const { id } = router.query
-  const { data: details, error, isLoading } = useGetDetailsShopQuery(id)
+const ShopDetails: NextPage = () => {
+  const { locale, query: {id} } = useRouter();
+  const params = [ id, locale]
+  const { data: details, error, isLoading } = useGetDetailsShopQuery(params)
 
   if (isLoading) {
     return (

@@ -1,32 +1,19 @@
 import React from 'react';
-import axios from 'axios';
-import { BattlepassSlider, Layout } from '@/components';
+import { NextPage } from 'next';
+import { BattlepassSlider } from '@/components';
+import { Layout } from '@/layouts';
 import moment from 'moment';
+import { useGetBattlepassQuery } from '@/redux/services/FortniteApi';
+import { useRouter } from 'next/router';
 
-const BattlePass = () => {
-  const [data, setData] = React.useState([]);
-
-  const fetchData = async (url: string) => {
-    await axios
-      .get(url, {
-        headers: { Authorization: process.env.NEXT_PUBLIC_FORTNITE_API_KEY },
-      })
-      .then(({ data }: any) => {
-        console.log(data);
-        setData(data);
-      });
-  };
-
-  // const dataBattlePass = [data]?.rewards;
-  React.useEffect(() => {
-    fetchData('https://fortniteapi.io/v2/battlepass?lang=en&season=current');
-    return () => {};
-  }, []);
+const BattlePass: NextPage = () => {
+  const { locale } = useRouter()
+  const { data: battlepass, error, isLoading } = useGetBattlepassQuery(locale)
 
   return (
     <Layout>
       <div className="battlepass">
-        {[data].map((obj: any, i: number) => (
+        {[battlepass].map((obj: any, i: number) => (
           <div key={i}>
             <div className="battlepass__title">
               {obj?.displayInfo?.chapterSeason}
@@ -37,15 +24,9 @@ const BattlePass = () => {
                 </span>
               </div>
             </div>
-            <BattlepassSlider data={data} />
+            <BattlepassSlider data={battlepass} />
           </div>
         ))}
-        {/* {data.displayInfo?.chapterSeason} */}
-
-        {/* {data.map((obj: any, i: number) => (
-          <div key={i}>
-          </div>
-        ))} */}
       </div>
     </Layout>
   );
