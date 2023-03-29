@@ -1,21 +1,21 @@
+import Countdown from 'react-countdown';
 import React from 'react';
-import Moment from 'react-moment';
-import moment from 'moment';
-import 'moment-timezone';
-import { useSelector } from 'react-redux';
 
-const Timer = () => {
-  const { items } = useSelector((state: any) => state.ShopSlice);
-  // const a = items?.currentRotation?.Daily;
+const Timer = ({ DailyTimer }:any ) => {
+  const DailyTimerNow = new Date(DailyTimer)
+  const DayOf = 0
+  const renderer = ({ hours, minutes, seconds }: any) => {
+    return <span> {hours}h {minutes}m {seconds}s</span>;
+  };
 
   return (
     <>
-      <div>
-        Текущее время {moment().format('MMMM Do YYYY')}
-        <span>
-          <br />
-          Обновление через {moment(items?.currentRotation?.Daily).endOf('minutes').fromNow()}
-        </span>
+      <div className='timer'>
+        <h1>Fortnite Shop</h1>
+        <h2>
+          Refresh in
+         <Countdown date={DailyTimerNow.setDate(DailyTimerNow.getDate() + DayOf)} renderer={renderer} />
+        </h2>
       </div>
     </>
   );
