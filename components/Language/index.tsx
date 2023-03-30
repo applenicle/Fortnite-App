@@ -1,59 +1,61 @@
-import { useState } from 'react';
-import { useRouter } from 'next/router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEarthAmericas } from '@fortawesome/free-solid-svg-icons';
+import { faCheck, faEarthAmericas, faLanguage } from '@fortawesome/free-solid-svg-icons';
+import { useRouter } from 'next/router';
+import { useState } from 'react'
+
+import { useAppDispatch, useAppSelector } from '@/hooks/redux';
+import { setIsOpen, setHighlighterIndex, SelectOptions } from '@/redux/slices/Languages';
 
 const Language = () => {
-  const [countryOpen, setCountryOpen] = useState(true)
-  const [activeCountry, setActiveCountry] = useState(0)
-  
-  const onSelectItem = (index:number) => {
-    setActiveCountry(index);
-  };
+  const dispatch = useAppDispatch()
+  const { isOpen, highlighterIndex,  options } = useAppSelector(state => state.LanguagesSlice)
+  const [value, setValue] = useState<typeof options[0] | undefined>(options[0])
 
-  const textLocales:string[] = [
-    'English',
-    'العربية',
-    'Deutsch',
-    'Español (Spain)',
-    'Español (LA)',
-    'French',
-    'Italian',
-    '日本語',
-    '한국어',
-    'Polski',
-    'Português (Brasil)',
-    'Русский',
-    'Türkçe',
-    '中文(简体)',
-    '中文(繁體)',
-  ]
-  
-  const { locales, asPath, push } = useRouter();
-  const handleClick = (local:any) => () => {
-    push(asPath, undefined, { locale: local });
-  };
+  const router = useRouter()
+  const { asPath, locale } = router
+
+  const selectOptions = (option: SelectOptions) => {
+    if(option !== options) setValue(option)
+  }
+
+  const isOptionSelected = (option: SelectOptions) => {
+    return option === value
+  }
 
   return (
-    <div className='navbar__language'>
-      <div>
-        <FontAwesomeIcon onClick={() => setCountryOpen(!countryOpen)} icon={faEarthAmericas}/>
-      </div>
-      <ul className={countryOpen == false ? 'navbar__language-list language-open' : 'navbar__language-list'}>
-      {textLocales.map((obj: string, i:number) => (
+    <div 
+      onBlur={() => dispatch(setIsOpen(false))}
+      onClick={() => dispatch(setIsOpen(!isOpen))}
+      tabIndex={0} 
+      className='selector__inner'
+    >
+      <span className="value">
+        <FontAwesomeIcon icon={faEarthAmericas} />
+        {locale == value?.value ? value?.label : 'Choose your country'}
+      </span>
+      <div className="divider"></div>
+      <div className="caret"></div>
+      <ul className={isOpen ? "select show" : "select"}>
+      {options.map((option, index) => 
         <li 
-          key={i}
-          className={activeCountry == i
-          ? 'navbar__language-item navbar__language-item--active' 
-          : 'navbar__language-item'} 
-          onClick={handleClick(locales[i])}
-          >
-          {obj}
+          key={option.value} 
+          onMouseEnter={() => dispatch(setHighlighterIndex(index))}
+          onClick={() => {
+            selectOptions(option)
+            router.push(asPath, undefined, { locale: option.value })
+          }}
+          className={
+            `${ isOptionSelected(option) ? "option selected" : "option"}
+             ${ index === highlighterIndex ? "option highlighted" : "option"}
+            `}
+        >
+          {option.label}
+          <FontAwesomeIcon icon={faCheck}/>
         </li>
-      ))}
+      )}
       </ul>
     </div>
-  );
-};
+  )
+}
 
 export default Language;

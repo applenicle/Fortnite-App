@@ -1,5 +1,5 @@
-import Link from 'next/link';
 import React from 'react';
+import Link from 'next/link';
 
 const ShopList = ({ data }: any) => {
   return (
@@ -10,7 +10,11 @@ const ShopList = ({ data }: any) => {
             <div className="shop__img-url">
               <img
                 className="shop__img"
-                src={obj.displayAssets[0]?.background ==  undefined ? obj.displayAssets[0]?.background : obj.granted[0]?.images?.background }
+                src={
+                  undefined 
+                  ? obj.granted[0]?.images?.background  
+                  : obj.displayAssets[0]?.background
+                }
                 alt={obj.mainId}
               />
             </div>

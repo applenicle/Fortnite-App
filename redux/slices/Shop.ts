@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Status, ShopState, IShop } from '../models/IShop';
+import { Status, ShopState, IShop } from '../types/IShop';
 
 export const initialState: ShopState = {
   // items: IShop[],
