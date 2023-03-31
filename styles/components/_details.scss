@@ -1,34 +1,69 @@
 .details {
-  // margin: auto;
+  margin: auto;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 30px;
+  height: 65vh;
+  &__text{
+    font-size: $xl;
+    line-height: $xl2;
+    margin: 1rem 0;
+  }
   &__img {
-    margin-right: 30px;
-    // margin-right: auto;
     img {
-      max-width: 550px;
+      max-width: 100%;
+      width: 550px;
     }
   }
   &__description {
-    // margin-left: auto;
+    margin-left: 2rem;
     a {
-      font-size: 18px;
+      font-size: $lg;
+      padding-bottom: 1rem;
     }
     svg {
       rotate: 180deg;
-      margin-left: 10px;
+      margin-left: 0.8rem;
     }
   }
   &__list {
+    padding: 1rem 0;
   }
   &__item {
-    border-bottom: 1px solid #fff;
-    margin-top: 20px;
+    font-size: $lg;
+    line-height: $lg;
+    margin: 1rem 0;
+    select{
+      margin-left: 5px;
+      border: none;
+      background: none;
+      color: inherit;
+      font-size: $lg;
+    }
   }
   &__title {
-    font-size: 32px;
-    margin: 7px 0;
+    font-size: $xl5;
+    line-height: $xl4line;
+    margin: 1rem 0;
+  }
+  &__subtitle{
+    font-size: $xl2;
+    margin: 1rem 0;
+  }
+}
+
+.rarity{
+  margin: 0 0.5rem;
+  &-uncommon{
+    color: #016607;
+  }
+  &-rare{
+    color: #008DD4;
+  }
+  &-epic{
+    color: #8A2DE2;
+  }
+  &-legendary{
+    color: #DE6E0F;
   }
 }
