@@ -54,6 +54,10 @@
 
 .rarity{
   margin: 0 0.5rem;
+  text-transform: uppercase;
+  &-common{
+    color: #40464D;
+  }
   &-uncommon{
     color: #016607;
   }
@@ -65,5 +69,11 @@
   }
   &-legendary{
     color: #DE6E0F;
+  }
+  &-mythic {
+    color: #C5A344;
+  }
+  &-exotic {
+    color: #23EEC4;
   }
 }
