@@ -1,0 +1,51 @@
+@import '@/styles/vars';
+
+.inner {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-gap: 1em;
+  margin: $base 0;
+}
+.box {
+  position: relative;
+  margin: 2rem 0;
+}
+.content {
+  background: var(--sidebar-background-color);
+  padding: $xl;
+}
+.image {
+  background: #4faae2;
+  padding: $xs;
+  clip-path: polygon(10% 10%, 100% 6%, 96% 99%, 2% 94%);
+  img {
+    clip-path: polygon(10% 10%, 100% 6%, 96% 100%, 2% 95%);
+    width: 100%;
+    object-fit: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+}
+.text {
+  color: var(--text--color);
+  text-align: center;
+  min-height: 200px;
+  h3 {
+    margin: 15px 0;
+    font-size: $xl;
+    line-height: $xlline;
+  }
+  p {
+    font-size: $base;
+    line-height: $baseline;
+  }
+}
+.bar {
+  position: absolute;
+  height: 40px;
+  width: 100%;
+  top: -30px;
+  background: #4faae2;
+  clip-path: polygon(0% 0%, 100% 0%, 100% 80%, 0% 100%);
+}

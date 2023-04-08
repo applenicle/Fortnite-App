@@ -1,0 +1,63 @@
+@import '@/styles/vars';
+
+.list {
+  display: grid;
+  align-items: center;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-gap: 0.5em;
+  padding: 1.5em 0;
+  @media (max-width: 1150px) {
+    grid-column: auto / span 2;
+  }
+}
+.item {
+  position: relative;
+  width: 250px;
+  margin-top: 0.5em;
+  cursor: pointer;
+}
+
+.img {
+  height: 300px;
+  max-width: 250px;
+  object-fit: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.content {
+  background: rgba(#000, 0.192);
+  backdrop-filter: blur(10px);
+  position: absolute;
+  text-align: center;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  color: $color-text-dark-mode;
+  width: 100%;
+  max-width: 250px;
+}
+.name {
+  margin: 5px 0;
+  font-size: $xl;
+}
+.type {
+  margin: 5px 0;
+}
+.price {
+  display: flex;
+  padding: 10px;
+  font-size: $xl;
+  line-height: $xl;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  background: $bg-vbucks;
+  span {
+    color: $color-text-dark-mode;
+  }
+  img {
+    margin-right: 5px;
+    width: 30px;
+    height: 30px;
+  }
+}

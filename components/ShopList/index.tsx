@@ -1,40 +1,40 @@
 import React from 'react';
 import Link from 'next/link';
+import styles from './ShopList.module.scss';
+import Title from '../Title';
 
 const ShopList = ({ data }: any) => {
   return (
     <>
-      {data?.map((obj: any) => (
-        <li className="shop__item" key={obj.offerId}>
-          <Link className="shop__link" href={`shop/${obj.mainId}`}>
-            <div className="shop__img-url">
+      <Title tag="h3">{data[0]?.section?.name}</Title>
+      <ul className={styles.list}>
+        {data?.map((obj) => (
+          <li className={styles.item} key={obj.offerId}>
+            <Link className={styles.link} href={`shop/${obj.mainId}`}>
               <img
-                className="shop__img"
+                className={styles.img}
                 src={
-                  undefined 
-                  ? obj.granted[0]?.images?.background  
-                  : obj.displayAssets[0]?.background
+                  obj.displayName.toLowerCase().includes(' bundle') ||
+                  obj.displayName.toLowerCase().includes(' wear')
+                    ? obj.displayAssets[0]?.background
+                    : obj.granted[0]?.images?.background
                 }
                 alt={obj.mainId}
               />
+            </Link>
+            <div className={styles.content}>
+              <div>
+                <h4 className={styles.name}>{obj.displayName}</h4>
+                <p className={styles.type}>{obj.granted[0].type.name}</p>
+              </div>
+              <div className={styles.price}>
+                <img src="https://fortnite-api.com/images/vbuck.png" alt="vbucks" />
+                <span>{obj.price?.finalPrice}</span>
+              </div>
             </div>
-          </Link>
-          <div className="shop__text-content">
-            <div>
-              <h4 className="shop__text-name">{obj.displayName}</h4>
-              <p className="shop__text-type">{obj.granted[0].type.name}</p>
-            </div>
-            <div className="shop__text-price">
-              <img
-                className="vbucks"
-                src="https://fortnite-api.com/images/vbuck.png"
-                alt="vbucks"
-              />
-              <span>{obj.price?.finalPrice}</span>
-            </div>
-          </div>
-        </li>
-      ))}
+          </li>
+        ))}
+      </ul>
     </>
   );
 };
