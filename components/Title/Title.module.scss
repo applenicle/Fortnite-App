@@ -1,0 +1,31 @@
+@import '@/styles/vars';
+
+.h1 {
+  margin: 1rem;
+  font-family: 'BurbankBigRegular-Black';
+  font-size: $xl4;
+  line-height: $xl4;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.h2 {
+  margin: 0;
+  font-family: 'BurbankBigRegular-Black';
+  font-size: $xl;
+  line-height: $xl;
+}
+
+.h3 {
+  margin: 0;
+  font-family: 'BurbankBigRegular-Black';
+  font-size: $xl;
+  line-height: $xl;
+}
+
+.h4 {
+  margin: 0;
+  font-family: 'BurbankBigRegular-Black';
+  font-size: $xl;
+  line-height: $xl;
+}
