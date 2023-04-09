@@ -1,0 +1,35 @@
+@import '@/styles/vars';
+
+.crew {
+  grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr));
+  display: grid;
+  grid-gap: 1rem;
+  margin: 1rem 0;
+}
+.img {
+  position: relative;
+  h3 {
+    font-size: $xl2;
+    position: absolute;
+    text-align: center;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background: rgba(#000, 0.192);
+    backdrop-filter: blur(10px);
+    padding: 5px;
+    color: $color-text-dark-mode;
+  }
+  img {
+    cursor: pointer;
+    background: var(--sidebar-search-background-color);
+    width: 100%;
+    object-fit: cover;
+  }
+}
+.data {
+  color: $color-text-dark-mode;
+  padding: 10px;
+  text-align: center;
+  background: $bg-vbucks;
+}
