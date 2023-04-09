@@ -1,0 +1,95 @@
+@import '@/styles/vars';
+.selector__inner {
+  position: relative;
+  min-height: 1em;
+  border: 0.05em solid var(--sidebar-search-text-color);
+  display: flex;
+  align-items: center;
+  margin: 20px;
+  gap: 0.5em;
+  padding: 1em 0.25em;
+  border-radius: $radius;
+  outline: none;
+  cursor: pointer;
+}
+.value {
+  flex-grow: 1;
+  color: var(--sidebar-search-text-color);
+  svg {
+    margin: 0 0.7em;
+  }
+}
+
+.divider {
+  background: var(--sidebar-search-text-color);
+  align-self: stretch;
+  margin-right: 0.2em;
+  width: 0.05em;
+}
+.caret {
+  translate: 0 25%;
+  border: 0.25em solid transparent;
+  border-top-color: var(--sidebar-search-text-color);
+  margin-right: 0.7em;
+}
+.select {
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: none;
+  max-height: 15em;
+  overflow-y: auto;
+  border: 0.05em solid #777;
+  border-radius: 0.25em;
+  width: 100%;
+  left: 0;
+  top: calc(100% + 0.25em);
+  background: var(--sidebar-search-background-color);
+  z-index: 100;
+  color: var(--sidebar-search-text-color);
+}
+
+.select.show {
+  display: block;
+}
+
+.option {
+  cursor: pointer;
+  font-size: $sm;
+  line-height: $sm;
+  text-transform: uppercase;
+  margin: 0.3em 0;
+  padding: 0.8em 0.5em;
+  border-bottom: 0.05em solid var(--sidebar-search-text-color);
+  &:first-child {
+    margin: 0;
+    margin-bottom: 0.3em;
+  }
+  &:last-child {
+    margin: 0;
+    margin-top: 0.3em;
+    border: none;
+  }
+  svg {
+    margin-right: 0.5em;
+    display: none;
+  }
+}
+
+.highlighted {
+  color: var(--hover);
+}
+
+.selected {
+  color: var(--text--hover);
+  display: flex;
+  margin-right: auto;
+  align-items: center;
+  svg {
+    margin-left: auto;
+    display: block;
+    align-items: center;
+    margin-bottom: 0.1em;
+  }
+}
