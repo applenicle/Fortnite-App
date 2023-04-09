@@ -1,0 +1,16 @@
+@import '@/styles/vars';
+
+.timer {
+  margin: $base;
+  text-align: center;
+  h2 {
+    font-size: $xl;
+    margin: $xs;
+    font-family: 'Rubik', sans-serif;
+  }
+}
+.time {
+  span {
+    margin-left: 5px;
+  }
+}
