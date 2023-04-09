@@ -1,0 +1,80 @@
+@import '@/styles/vars';
+
+.menu {
+  margin-left: 25px;
+}
+.link {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  font-size: $xl;
+  line-height: $xlline;
+  font-weight: 500;
+  svg {
+    &:first-child {
+      margin-right: 20px;
+    }
+    &:last-child {
+      margin-left: auto;
+      margin-right: 30px;
+    }
+  }
+  color: var(---text-color);
+  &:hover {
+    color: var(--hover);
+  }
+}
+
+.secondList.secondListActive {
+  display: block;
+}
+.secondList {
+  display: none;
+  margin-top: 15px;
+  margin-left: 12px;
+  list-style: none;
+  border-left: 1px solid #dfdfdf;
+  li {
+    padding: 0 0 0 32px;
+    // position: relative;
+    // &::before {
+    //   position: absolute;
+    //   content: '';
+    //   width: 20px;
+    //   height: 1px;
+    //   left: 0;
+    //   // bottom: 0;
+    //   // bottom: 8px;
+    //   background: #dfdfdf;
+    // }
+  }
+}
+.linkSecond {
+  font-size: $lg;
+  display: grid;
+  align-items: center;
+  margin-top: 13px;
+  &:hover {
+    color: var(--hover);
+  }
+  svg {
+    &:hover {
+      fill: var(--hover);
+    }
+    &:last-child {
+      rotate: 90deg;
+    }
+  }
+}
+
+.linkActive {
+  color: var(--text--hover);
+}
+
+.LinkSecondActive {
+  border-radius: $radius;
+  // background: var(--sidebar-search-background-color);
+  color: var(--text--hover);
+  // padding: 10px;
+  // margin-right: 20px;
+}
