@@ -1,0 +1,57 @@
+@import '@/styles/vars';
+
+.wrapper {
+  grid-template-columns: repeat(auto-fill, minmax(520px, 1fr));
+  display: grid;
+  grid-gap: 1rem;
+  margin: 1rem 0;
+}
+.item {
+  background: var(--sidebar-search-background-color);
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  border-radius: $radius;
+  h3 {
+    font-size: $xl;
+    line-height: $xlline;
+  }
+  img {
+    margin-left: 1rem;
+    max-width: 120px;
+    max-height: 120px;
+  }
+}
+.timer {
+  margin-top: 1rem;
+  margin-bottom: 0.3rem;
+  font-size: $sm;
+  line-height: $smline;
+}
+.link {
+  font-size: $base;
+  line-height: $baseline;
+  margin: 1rem 0;
+  display: flex;
+  align-items: center;
+  span {
+    margin-right: 1rem;
+  }
+  a {
+    background: var(--text--hover);
+    color: var(--sidebar-search-text-color);
+    padding: 10px 20px;
+    border-radius: $radius * 2;
+    cursor: pointer;
+    margin-right: auto;
+  }
+}
+
+.content {
+  margin: 0 1rem;
+  p {
+    margin: 0.5rem 0;
+    font-size: $base;
+    line-height: $baseline;
+  }
+}
