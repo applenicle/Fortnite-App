@@ -1,37 +1,32 @@
-import React from 'react';
 import { useRouter } from 'next/router';
-import { useGetDetailsShopQuery } from '@/redux/services/FortniteApi';
-import { Details } from '@/components';
-import { Layout, LayoutError, LayoutLoading, LayoutNoFetch } from '@/layouts';
 import { NextPage } from 'next';
+import { withLayout } from '@/components/Layout';
+import { Details } from '@/components';
+import { useGetDetailsShopQuery } from '@/redux/services/FortniteApi';
 
-
-const ShopDetails: NextPage = () => {
-  const { locale, query: {id} } = useRouter();
-  const params = [ id, locale]
-  const { data: details, error, isLoading } = useGetDetailsShopQuery(params)
+const ShopDetails: NextPage = (): JSX.Element => {
+  const {
+    locale,
+    query: { id },
+  } = useRouter();
+  const params = [id, locale];
+  const { data: details, error, isLoading } = useGetDetailsShopQuery(params);
 
   if (isLoading) {
     return (
-      <LayoutLoading>
-        <div className="shop__list">Skeleton</div>;
-      </LayoutLoading>
+      <>
+        <div>Skeleton</div>
+      </>
     );
-  }
-  if (error) {
-    <LayoutError>ERROR TRY TO REFRESH PAGE</LayoutError>;
-  }
-  if (!details) {
-    <LayoutNoFetch>NO DATA</LayoutNoFetch>;
   }
 
   return (
-    <Layout>
-      {[details?.item].map((obj: any) => (
+    <>
+      {[details?.item].map((obj) => (
         <Details key={obj.id} {...obj} />
       ))}
-    </Layout>
+    </>
   );
 };
 
-export default ShopDetails;
+export default withLayout(ShopDetails);
