@@ -1,0 +1,30 @@
+@import '@/styles/vars';
+
+.wrapper {
+  grid-template-columns: repeat(auto-fill, minmax(25rem, 1fr));
+  display: grid;
+  grid-gap: 1rem;
+  margin: 1rem 0;
+}
+
+.item {
+  background: var(--sidebar-background-color);
+  img {
+    padding: 10px;
+    width: 100%;
+  }
+}
+.text {
+  margin-left: 15px;
+  margin-bottom: 1rem;
+  div {
+    font-size: $base;
+    line-height: $baseline;
+    margin: 0.2rem 0;
+  }
+  p {
+    font-size: $xl;
+    margin-right: 10px;
+    line-height: $xlline;
+  }
+}
