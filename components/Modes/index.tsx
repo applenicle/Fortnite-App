@@ -1,0 +1,48 @@
+import { useGetModesQuery } from '@/redux/services/FortniteApi';
+import { useRouter } from 'next/router';
+import styles from './Modes.module.scss';
+
+const GameModes = (): JSX.Element => {
+  const { locale } = useRouter();
+  const { data, error, isLoading } = useGetModesQuery(locale);
+  const dataSorted = data?.modes;
+  let obj: any = {};
+  let arr: any = [];
+  [...new Set(dataSorted?.map((obj: any) => obj?.enabled))].map((item) => (obj[item] = []));
+  dataSorted?.map((item: any) => {
+    obj[item?.enabled]?.push({ ...item });
+  });
+
+  Object.entries(obj).map(([enabled, data]) => {
+    arr.push({ enabled, data });
+  });
+  return (
+    <>
+      {arr?.map(({ enabled, data }, i: number) => (
+        <div className={styles.wrapper} key={i}>
+          {enabled == 'true'
+            ? data.map((obj) => (
+                <div className={styles.item} key={obj.id}>
+                  <div className={styles.image}>
+                    <img src={obj.image} alt={obj.id} />
+                  </div>
+                  <div className={styles.title}>
+                    {obj.matchmakingIcon == null ? (
+                      <h3>{obj.name}</h3>
+                    ) : (
+                      <>
+                        <img src={obj.matchmakingIcon} alt={obj.matchmakingIcon} />
+                        <h3>{obj.name}</h3>
+                      </>
+                    )}
+                  </div>
+                </div>
+              ))
+            : ''}
+        </div>
+      ))}
+    </>
+  );
+};
+
+export default GameModes;

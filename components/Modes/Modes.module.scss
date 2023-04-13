@@ -1,0 +1,39 @@
+@import '@/styles/vars';
+
+.wrapper {
+  grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+  display: grid;
+  grid-gap: 1rem;
+  margin: 1rem 0;
+}
+.item {
+  position: relative;
+}
+.image {
+  img {
+    width: 100%;
+  }
+}
+.title {
+  align-items: center;
+  display: flex;
+  background: rgba(#000, 0.4);
+  backdrop-filter: blur(10px);
+  position: absolute;
+  text-align: center;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  color: $color-text-dark-mode;
+  width: 100%;
+  padding: 10px 0;
+  h3 {
+    margin-left: 5px;
+    margin-top: 4px;
+  }
+  img {
+    margin: 0 5px;
+    width: 100%;
+    max-width: 32px;
+  }
+}
