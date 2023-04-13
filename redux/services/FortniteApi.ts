@@ -1,5 +1,8 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { IShop } from '../models/IShop';
+
+interface Locale {
+  locale: string | undefined;
+}
 
 export const fortniteApi = createApi({
   reducerPath: 'fortniteApi',
@@ -12,68 +15,77 @@ export const fortniteApi = createApi({
     },
   }),
   endpoints: (builder) => ({
-    getAccountId: builder.query<any[], any>({
-      query: (accountId) => `v1/stats?account=${accountId}&lang=en`,
+    getAccountId: builder.query<any[], Locale[]>({
+      query: (params) => {
+        const [id, language] = params;
+        return `v1/stats?account=${id}&lang=${language}`;
+      },
     }),
-    getAllShop: builder.query<IShop[], void>({
-      query: () => '/v2/shop?lang=en',
+    getAllShop: builder.query({
+      query: (language) => `/v2/shop?lang=${language}`,
     }),
-    getBattlepass: builder.query<any[], any>({
-      query: () => `v2/battlepass?lang=en&season=current`,
+    getBattlepass: builder.query({
+      query: (language) => `v2/battlepass?lang=${language}&season=current`,
     }),
-    getDetailsShop: builder.query<any[], any>({
-      query: (id) => `/v2/items/get?id=${id}&lang=en`,
+    getDetailsShop: builder.query({
+      query: (params) => {
+        const [id, language] = params;
+        return `/v2/items/get?id=${id}&lang=${language}`;
+      },
     }),
-    getUserName: builder.query<any[], any>({
-      query: (username) => `/v1/lookup?username=${username}&lang=en`,
+    getUserName: builder.query({
+      query: (params) => {
+        const [username, language] = params;
+        return `/v1/lookup?username=${username}&lang=${language}`;
+      },
     }),
-
+    getMap: builder.query({
+      query: () => `/v1/maps/list`,
+    }),
+    getAchievements: builder.query({
+      query: (language) => `/v1/achievements?lang=${language}`,
+    }),
+    getFish: builder.query({
+      query: (language) => `/v1/loot/fish?lang=${language}`,
+    }),
+    getCrew: builder.query({
+      query: (language) => `v2/crew/history?lang=${language}`,
+    }),
+    getUpcomingItems: builder.query({
+      query: (language) => `/v2/items/upcoming?lang=${language}`,
+    }),
+    getWeapons: builder.query({
+      query: (language) => `/v1/loot/list?lang=${language}`,
+    }),
+    getChallenges: builder.query({
+      query: (language) => `/v3/challenges?season=current&lang=${language}`,
+    }),
+    getTwitch: builder.query({
+      query: () => 'v1/twitch/drops',
+    }),
+    getNews: builder.query({
+      query: (language) => `v1/news?lang=${language}&type=br`,
+    }),
+    getModes: builder.query({
+      query: (language) => `v1/game/modes?lang=${language}`,
+    }),
   }),
 });
 
-export const { 
+export const {
   useGetAccountIdQuery,
-  useGetAllShopQuery, 
+  useGetAllShopQuery,
   useGetBattlepassQuery,
-  useGetDetailsShopQuery, 
+  useGetDetailsShopQuery,
   useGetUserNameQuery,
-  } = fortniteApi
-
-// export const battlepassAPI = createApi({
-//   reducerPath: 'battlepassAPI',
-//   baseQuery: fetchBaseQuery({
-  
-//     baseUrl: `https://fortniteapi.io/v2`,
-//     prepareHeaders: (headers, { getState }) => {
-//       headers.set('Authorization', `${process.env.NEXT_PUBLIC_FORTNITE_API_KEY}`);
-//       return headers;
-//     },
-//   }),
-//   endpoints: (builder) => ({
-//     fetchAllShop: builder.query<IShop[], string | number>({
-//       query: (name: string) => ({
-//         url: `/${name}`,
-//       }),
-//     }),
-//   }),
-// });
-
-
-// export const mapAPI = createApi({
-//   reducerPath: 'mapAPI',
-//   baseQuery: fetchBaseQuery({
-//     baseUrl: `https://fortniteapi.io/v2`,
-//     prepareHeaders: (headers, { getState }) => {
-//       headers.set('Authorization', `${process.env.NEXT_PUBLIC_FORTNITE_API_KEY}`);
-//       return headers;
-//     },
-//   }),
-//   endpoints: (builder) => ({
-//     fetchAllShop: builder.query<IShop[], string | number>({
-//       query: (name: string) => ({
-//         url: `/${name}`,
-//       }),
-//     }),
-//   }),
-// });
-
+  useGetMapQuery,
+  useGetAchievementsQuery,
+  useGetUpcomingItemsQuery,
+  useGetCrewQuery,
+  useGetFishQuery,
+  useGetWeaponsQuery,
+  useGetChallengesQuery,
+  useGetTwitchQuery,
+  useGetNewsQuery,
+  useGetModesQuery,
+} = fortniteApi;
