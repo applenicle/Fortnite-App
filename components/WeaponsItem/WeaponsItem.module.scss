@@ -1,46 +1,48 @@
 @import '@/styles/vars';
 
-.img {
-  // display: fslex;
-  // align-items: center;
-  // img {
-  // width: 100%;
-  // max-width: 80px;
-  // }
-}
-
 .table {
   max-width: 1200px;
   margin: auto;
   border-collapse: collapse;
+  thead {
+    &::before {
+      content: '@';
+      display: block;
+      text-indent: -99999px;
+    }
+    th {
+      font-weight: normal;
+      font-size: $xl;
+      background: var(--sidebar-search-background-color);
+      padding: 1.5rem 1rem;
+      text-align: center;
+      border: 2px solid var(--sidebar-search-background-color);
+    }
+  }
   tbody {
     display: table-row-group;
     vertical-align: middle;
     border-color: inherit;
+    td {
+      font-size: $base;
+      border: 2px solid var(--sidebar-search-background-color);
+      display: table-cell;
+      text-align: center;
+      vertical-align: inherit;
+      img {
+        width: 100%;
+        max-width: 128px;
+        max-height: 128px;
+        background-size: 100% 100%;
+        vertical-align: middle;
+        display: inline-block;
+      }
+    }
   }
   tr {
     display: table-row;
     vertical-align: inherit;
     border-color: inherit;
-  }
-  td {
-    font-size: $base;
-    border: 1px solid var(--text--color);
-    display: table-cell;
-    text-align: center;
-    vertical-align: inherit;
-  }
-  th {
-    font-weight: normal;
-    font-size: $xl;
-    background: var(--sidebar-search-background-color);
-    padding: 1rem;
-    text-align: center;
-    border: 1px solid var(--sidebar-search-background-color);
-  }
-  img {
-    width: 100%;
-    max-width: 80px;
   }
 }
 
@@ -67,5 +69,8 @@
   }
   &__exotic {
     color: #23eec4;
+  }
+  &__transcendent {
+    color: #e3525e;
   }
 }

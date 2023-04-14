@@ -3,6 +3,7 @@ import { useGetWeaponsQuery } from '@/redux/services/FortniteApi';
 import { useRouter } from 'next/router';
 import cn from 'classnames';
 import { Fragment } from 'react';
+import NoItem from '@/public/NoItem.png';
 
 const WeaponsItem = (): JSX.Element => {
   const { locale } = useRouter();
@@ -31,29 +32,31 @@ const WeaponsItem = (): JSX.Element => {
   // const skeleton = [...new Array(15)].map((_: any, i: number) => <Skeleton key={i} />);
   return (
     <table className={styles.table}>
-      <thead>
-        <tr>
-          <th></th>
-          <th></th>
-          <th></th>
-          <th>Crit Dmg</th>
-          <th>DPS</th>
-          <th>Fire Rate</th>
-          <th>Mag Size</th>
-          <th>Reload</th>
-        </tr>
-      </thead>
-      <tbody>
-        {arr?.map(({ name, data }, i: number) => (
-          // <tbody key={i}>
-          <Fragment key={i}>
+      {arr?.map(({ name, data }, i: number) => (
+        <Fragment key={i}>
+          <thead>
+            <tr>
+              <th></th>
+              <th></th>
+              <th>Rarity</th>
+              <th>Crit Dmg</th>
+              <th>DPS</th>
+              <th>Fire Rate</th>
+              <th>Mag Size</th>
+              <th>Reload</th>
+            </tr>
+          </thead>
+          <tbody>
             <tr>
               <td rowSpan={data.length + 1}>{name}</td>
             </tr>
             {data.map((obj) => (
               <tr key={obj.id}>
                 <td>
-                  <img src={undefined ? obj.images.icon : obj.images.background} alt={obj.id} />
+                  <img
+                    src={obj.images.background == null ? NoItem.src : obj.images.background}
+                    alt={obj.id}
+                  />
                 </td>
                 <td
                   className={cn(styles.rarity, {
@@ -78,6 +81,9 @@ const WeaponsItem = (): JSX.Element => {
                     [styles.rarity__exotic]: obj.rarity.toLowerCase().includes('exotic')
                       ? styles.rarity__exotic
                       : '',
+                    [styles.rarity__transcendent]: obj.rarity.toLowerCase().includes('transcendent')
+                      ? styles.rarity__transcendent
+                      : '',
                   })}>
                   {obj.rarity}
                 </td>
@@ -88,10 +94,9 @@ const WeaponsItem = (): JSX.Element => {
                 <td>{obj.mainStats.ReloadTime}</td>
               </tr>
             ))}
-          </Fragment>
-          // </tbody>
-        ))}
-      </tbody>
+          </tbody>
+        </Fragment>
+      ))}
     </table>
   );
 };
