@@ -2,12 +2,21 @@ import Link from 'next/link';
 import styles from './Twitch.module.scss';
 import { useGetTwitchQuery } from '@/redux/services/FortniteApi';
 import moment from 'moment';
+import Skeleton from '../Skeleton';
 
 const Twitch = (): JSX.Element => {
   const { data, error, isLoading } = useGetTwitchQuery();
+  const skeleton = [...new Array(20)].map((_: any, i: number) => <Skeleton key={i} />);
   if (isLoading) {
-    <></>;
+    return <div className={styles.wrapper}>{skeleton}</div>;
   }
+  if (error) {
+    return <>ERROR TRY RELOAD PAGE</>;
+  }
+  if (!data) {
+    return <>NO DATA</>;
+  }
+
   return (
     <div className={styles.wrapper}>
       {data?.drops.map((obj) => (

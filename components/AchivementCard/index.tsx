@@ -1,14 +1,23 @@
 import styles from './AchivementCard.module.scss';
 import { useGetAchievementsQuery } from '@/redux/services/FortniteApi';
 import { useRouter } from 'next/router';
+import Skeleton from '../Skeleton';
 
 const AchivementCard = (): JSX.Element => {
   const { locale } = useRouter();
   const { data, error, isLoading } = useGetAchievementsQuery(locale);
 
+  const skeleton = [...new Array(20)].map((_: any, i: number) => <Skeleton key={i} />);
   if (isLoading) {
-    <></>;
+    return <div className={styles.inner}>{skeleton}</div>;
   }
+  if (error) {
+    return <>ERROR TRY RELOAD PAGE</>;
+  }
+  if (!data) {
+    return <>NO DATA</>;
+  }
+
   return (
     <>
       <div className={styles.inner}>

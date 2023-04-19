@@ -1,10 +1,23 @@
 import { useGetModesQuery } from '@/redux/services/FortniteApi';
 import { useRouter } from 'next/router';
 import styles from './Modes.module.scss';
+import Skeleton from '../Skeleton';
 
 const GameModes = (): JSX.Element => {
   const { locale } = useRouter();
   const { data, error, isLoading } = useGetModesQuery(locale);
+  const skeleton = [...new Array(20)].map((_: any, i: number) => <Skeleton key={i} />);
+
+  if (isLoading) {
+    return <div className={styles.wrapper}>{skeleton}</div>;
+  }
+  if (error) {
+    return <>ERROR TRY RELOAD PAGE</>;
+  }
+  if (!data) {
+    return <>NO DATA</>;
+  }
+
   const dataSorted = data?.modes;
   let obj: any = {};
   let arr: any = [];

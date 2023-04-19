@@ -1,25 +1,33 @@
 import { useGetCrewQuery } from '@/redux/services/FortniteApi';
 import { useRouter } from 'next/router';
-import React from 'react';
+import { useState } from 'react';
 import Modal from '../Modal';
 import styles from './CrewCard.module.scss';
 import moment from 'moment';
+import Skeleton from '../Skeleton';
 
 const CrewCard = () => {
-  const [activeItem, setActiveItem] = React.useState<number | null>(null);
+  const [activeItem, setActiveItem] = useState<number | null>(null);
   const onSelectItem = (index: number | null) => {
     setActiveItem(index);
   };
   const { locale } = useRouter();
   const { data, error, isLoading } = useGetCrewQuery(locale);
+  const skeleton = [...new Array(20)].map((_: any, i: number) => <Skeleton key={i} />);
 
   if (isLoading) {
-    <></>;
+    return <div className={styles.crew}>{skeleton}</div>;
+  }
+  if (error) {
+    <>Error</>;
+  }
+  if (!data) {
+    <>No Data</>;
   }
 
   return (
     <ul className={styles.crew}>
-      {data?.history.map((obj: any, i: number) => (
+      {data?.history.map((obj, i: number) => (
         <li key={obj.date}>
           <div className={styles.img} onClick={() => setActiveItem(i)}>
             <img src={obj.rewards[0].item?.images.background} alt={obj?.rewards[0].item?.name} />

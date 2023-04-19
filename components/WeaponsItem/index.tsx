@@ -1,19 +1,33 @@
 import styles from './WeaponsItem.module.scss';
 import { useGetWeaponsQuery } from '@/redux/services/FortniteApi';
 import { useRouter } from 'next/router';
-import cn from 'classnames';
 import { Fragment } from 'react';
 import NoItem from '@/public/NoItem.png';
+import Rarity from '../Rarity';
+import Skeleton from '../Skeleton';
+import { checkData } from '@/hooks/Bounce';
 
 const WeaponsItem = (): JSX.Element => {
   const { locale } = useRouter();
   const { data, error, isLoading } = useGetWeaponsQuery(locale);
-  const dataShop = data?.weapons;
+
+  const skeleton = [...new Array(20)].map((_: any, i: number) => <Skeleton key={i} />);
+  if (isLoading) {
+    return <table className={styles.table}>{skeleton}</table>;
+  }
+  if (error) {
+    return <>ERROR TRY RELOAD PAGE</>;
+  }
+  if (!data) {
+    return <>NO DATA</>;
+  }
+
+  const dataWeapon = data?.weapons;
   let obj: any = {};
   let arr: any = [];
-  [...new Set(dataShop?.map((obj: any) => obj?.name))].map((item) => (obj[item] = []));
+  [...new Set(dataWeapon?.map((obj: any) => obj?.name))].map((item) => (obj[item] = []));
 
-  dataShop?.map((item: any) => {
+  dataWeapon?.map((item: any) => {
     obj[item?.name]?.push({ ...item });
   });
 
@@ -21,15 +35,6 @@ const WeaponsItem = (): JSX.Element => {
     arr.push({ name, data });
   });
 
-  const skeleton = [...new Array(15)].map((_: any, i: number) => <div key={i}>Skelet</div>);
-
-  console.log(arr);
-
-  if (isLoading) {
-    return <>{skeleton}</>;
-  }
-
-  // const skeleton = [...new Array(15)].map((_: any, i: number) => <Skeleton key={i} />);
   return (
     <table className={styles.table}>
       {arr?.map(({ name, data }, i: number) => (
@@ -58,34 +63,8 @@ const WeaponsItem = (): JSX.Element => {
                     alt={obj.id}
                   />
                 </td>
-                <td
-                  className={cn(styles.rarity, {
-                    [styles.rarity__common]: obj.rarity.toLowerCase().includes('common')
-                      ? styles.rarity__common
-                      : '',
-                    [styles.rarity__uncommon]: obj.rarity.toLowerCase().includes('uncommon')
-                      ? styles.rarity__uncommon
-                      : '',
-                    [styles.rarity__rare]: obj.rarity.toLowerCase().includes('rare')
-                      ? styles.rarity__rare
-                      : '',
-                    [styles.rarity__epic]: obj.rarity.toLowerCase().includes('epic')
-                      ? styles.rarity__epic
-                      : '',
-                    [styles.rarity__legendary]: obj.rarity.toLowerCase().includes('legendary')
-                      ? styles.rarity__legendary
-                      : '',
-                    [styles.rarity__mythic]: obj.rarity.toLowerCase().includes('mythic')
-                      ? styles.rarity__mythic
-                      : '',
-                    [styles.rarity__exotic]: obj.rarity.toLowerCase().includes('exotic')
-                      ? styles.rarity__exotic
-                      : '',
-                    [styles.rarity__transcendent]: obj.rarity.toLowerCase().includes('transcendent')
-                      ? styles.rarity__transcendent
-                      : '',
-                  })}>
-                  {obj.rarity}
+                <td>
+                  <Rarity rarity={obj.rarity}>{obj.rarity}</Rarity>
                 </td>
                 <td>{Math.floor(obj.mainStats.DmgPB * obj.mainStats.DamageZone_Critical)}</td>
                 <td>{Math.floor(obj.mainStats.DmgPB)}</td>

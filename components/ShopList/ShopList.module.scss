@@ -3,29 +3,23 @@
 .list {
   display: grid;
   align-items: center;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
   grid-gap: 0.5em;
   padding: 1.5em 0;
-  @media (max-width: 1150px) {
-    grid-column: auto / span 2;
-  }
 }
 .item {
   position: relative;
-  width: 250px;
-  margin-top: 0.5em;
   cursor: pointer;
 }
 
 .img {
-  height: 300px;
-  max-width: 250px;
+  width: 100%;
   object-fit: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
 .content {
-  background: rgba(#000, 0.192);
+  background: rgba(#000, 0.4);
   backdrop-filter: blur(10px);
   position: absolute;
   text-align: center;
@@ -34,7 +28,6 @@
   left: 0;
   color: $color-text-dark-mode;
   width: 100%;
-  max-width: 250px;
 }
 .name {
   margin: 5px 0;
