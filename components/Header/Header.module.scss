@@ -1,0 +1,12 @@
+.header {
+  display: none;
+}
+
+@media (max-width: 765px) {
+  .header {
+    display: grid;
+    grid-template-columns: 1fr 40px;
+    gap: 10px;
+    margin: 15px 15px 0;
+  }
+}
