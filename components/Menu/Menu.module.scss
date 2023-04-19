@@ -23,11 +23,19 @@
   &:hover {
     color: var(--hover);
   }
+  &Active {
+    color: var(--text--hover);
+    svg {
+      &:hover {
+        fill: var(--hover);
+      }
+      &:last-child {
+        rotate: 90deg;
+      }
+    }
+  }
 }
 
-.secondList.secondListActive {
-  display: block;
-}
 .secondList {
   display: none;
   margin-top: 15px;
@@ -48,6 +56,9 @@
     //   background: #dfdfdf;
     // }
   }
+  &Active {
+    display: block;
+  }
 }
 .linkSecond {
   font-size: $lg;
@@ -57,18 +68,6 @@
   &:hover {
     color: var(--hover);
   }
-  svg {
-    &:hover {
-      fill: var(--hover);
-    }
-    &:last-child {
-      rotate: 90deg;
-    }
-  }
-}
-
-.linkActive {
-  color: var(--text--hover);
 }
 
 .LinkSecondActive {
