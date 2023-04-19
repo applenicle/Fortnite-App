@@ -53,29 +53,3 @@
     margin: 1rem 0;
   }
 }
-
-.rarity {
-  margin: 0 0.5rem;
-  text-transform: uppercase;
-  &__common {
-    color: #40464d;
-  }
-  &__uncommon {
-    color: #016607;
-  }
-  &__rare {
-    color: #008dd4;
-  }
-  &__epic {
-    color: #8a2de2;
-  }
-  &__legendary {
-    color: #de6e0f;
-  }
-  &__mythic {
-    color: #c5a344;
-  }
-  &__exotic {
-    color: #23eec4;
-  }
-}

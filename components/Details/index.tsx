@@ -4,7 +4,7 @@ import Link from 'next/link';
 import moment from 'moment';
 import styles from './Details.module.scss';
 import { DetailsProps } from './Details.props';
-import cn from 'classnames';
+import Rarity from '../Rarity';
 
 const Details = ({
   added,
@@ -34,23 +34,7 @@ const Details = ({
         <h3 className={styles.details__subtitle}>{name}</h3>
         <h2 className={styles.details__subtitle}>
           {type.name}
-          <span
-            className={cn(styles.rarity, {
-              [styles.rarity__uncommon]: rarity?.id.toLowerCase().includes('uncommon')
-                ? styles.rarity__uncommon
-                : '',
-              [styles.rarity__rare]: rarity?.id.toLowerCase().includes('rare')
-                ? styles.rarity__rare
-                : '',
-              [styles.rarity__epic]: rarity?.id.toLowerCase().includes('epic')
-                ? styles.rarity__epic
-                : '',
-              [styles.rarity__legendary]: rarity?.id.toLowerCase().includes('legendary')
-                ? styles.rarity__legendary
-                : '',
-            })}>
-            {rarity.name}
-          </span>
+          <Rarity rarity={rarity?.id}>{rarity.name}</Rarity>
         </h2>
         <p className={styles.details__text}>{description}</p>
 
