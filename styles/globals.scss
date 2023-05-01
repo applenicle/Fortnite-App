@@ -1,10 +1,5 @@
 @import './vars';
 
-@font-face {
-  font-family: 'BurbankBigRegular-Black';
-  src: url('../fonts/BurbankSmall-Black.otf');
-}
-
 * {
   box-sizing: border-box;
   padding: 0;
@@ -21,6 +16,8 @@ html[data-theme='light'] {
   --sidebar-background-color: #{$sidebar-light-mode};
   --sidebar-search-text-color: #{$sidebar-search-text-light-mode};
   --sidebar-search-background-color: #{$sidebar-search-light-mode};
+  --skeleton-background: #{$bg-skeleton-light};
+  --skeleton-foreground: #{$fg-skeleton-light};
 }
 html[data-theme='dark'] {
   --footer-bg: #{$bg-footer-dark};
@@ -31,12 +28,14 @@ html[data-theme='dark'] {
   --sidebar-background-color: #{$sidebar-dark-mode};
   --sidebar-search-text-color: #{$sidebar-search-text-dark-mode};
   --sidebar-search-background-color: #{$sidebar-search-dark-mode};
+  --skeleton-background: #{$bg-skeleton-dark};
+  --skeleton-foreground: #{$fg-skeleton-dark};
 }
 
 body {
   background: var(--bg-color);
   color: var(--text--color);
-  font-family: 'Rubik', sans-serif;
+  font-family: 'Manrope', sans-serif;
 }
 h1,
 h2,
@@ -44,38 +43,21 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'BurbankBigRegular-Black';
+  font-family: 'Manrope', sans-serif;
+  font-weight: 800;
   font-size: $xl3;
-  line-height: $xl3;
+  line-height: $xl3line;
 }
 a {
   color: inherit;
   text-decoration: none;
 }
 
-.rarity {
-  margin: 0 0.5rem;
-  text-transform: uppercase;
-  &__common {
-    color: #40464d;
-  }
-  &__uncommon {
-    color: #016607;
-  }
-  &__rare {
-    color: #008dd4;
-  }
-  &__epic {
-    color: #8a2de2;
-  }
-  &__legendary {
-    color: #de6e0f;
-  }
-  &__mythic {
-    color: #c5a344;
-  }
-  &__exotic {
-    color: #23eec4;
+.skeleton {
+  background: var(--skeleton-background);
+  rect {
+    fill: var(--skeleton-foreground);
+    background: var(--skeleton-background);
   }
 }
 
