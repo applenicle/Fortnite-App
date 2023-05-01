@@ -1,0 +1,45 @@
+@import '@/styles/vars';
+
+.search {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px;
+  input {
+    width: 100%;
+    font-size: $base;
+    line-height: $baseline;
+    border-radius: $radius 0 0 $radius;
+    background: none;
+    border: none;
+    background: var(--sidebar-search-background-color);
+    color: var(--sidebar-search-text-color);
+    padding: 14px;
+    outline: none;
+    transition: 0.5s all ease-in-out;
+  }
+  button {
+    transition: 0.5s all ease-in-out;
+    cursor: pointer;
+    border-radius: 0 $radius $radius 0;
+    background: var(--text--hover);
+    color: var(--text--color);
+    padding: 17px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 765px) {
+  .search {
+    margin-top: 5px;
+    margin-bottom: 20px;
+    input {
+      padding: 11px;
+    }
+    a {
+      padding: 14px;
+    }
+  }
+}
