@@ -1,5 +1,5 @@
 import { Title, TwitchComponent } from '@/components';
-import { withLayout } from '@/components/Layout';
+import { withLayout } from '@/layout';
 import { NextPage } from 'next';
 
 const Twitch: NextPage = (): JSX.Element => {

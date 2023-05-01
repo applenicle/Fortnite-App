@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import { NextPage } from 'next';
-import { withLayout } from '@/components/Layout';
+import { withLayout } from '@/layout';
 import { Details } from '@/components';
 import { useGetDetailsShopQuery } from '@/redux/services/FortniteApi';
 
@@ -10,20 +10,15 @@ const ShopDetails: NextPage = (): JSX.Element => {
     query: { id },
   } = useRouter();
   const params = [id, locale];
-  const { data: details, error, isLoading } = useGetDetailsShopQuery(params);
-
+  const { data, isLoading } = useGetDetailsShopQuery(params);
   if (isLoading) {
-    return (
-      <>
-        <div>Skeleton</div>
-      </>
-    );
+    return <>loading...</>;
   }
 
   return (
     <>
-      {[details?.item].map((obj) => (
-        <Details key={obj.id} {...obj} />
+      {[data?.item].map((obj) => (
+        <Details key={obj?.id} {...obj} />
       ))}
     </>
   );

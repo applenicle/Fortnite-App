@@ -1,6 +1,6 @@
 import { NewsComponent, Title } from '@/components';
 import { NextPage } from 'next';
-import { withLayout } from '@/components/Layout';
+import { withLayout } from '@/layout';
 
 const News: NextPage = (): JSX.Element => {
   return (

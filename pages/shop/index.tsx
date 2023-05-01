@@ -1,6 +1,6 @@
 import { NextPage } from 'next';
 import { ShopList, Title } from '@/components';
-import { withLayout } from '@/components/Layout';
+import { withLayout } from '@/layout';
 
 const Shop: NextPage = (): JSX.Element => {
   return (

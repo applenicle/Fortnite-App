@@ -1,14 +1,12 @@
-import Head from 'next/head';
-import Image from 'next/image';
-import { Inter } from 'next/font/google';
-import { Layout } from '@/layouts';
+import { NextPage } from 'next/types';
+import { withLayout } from '@/layout';
 
-const inter = Inter({ subsets: ['latin'] });
-
-export default function Home() {
+const Home: NextPage = (): JSX.Element => {
   return (
     <>
-      <Layout>Home Page</Layout>
+      <div></div>
     </>
   );
-}
+};
+
+export default withLayout(Home);

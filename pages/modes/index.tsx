@@ -1,5 +1,5 @@
 import { GameModes, Title } from '@/components';
-import { withLayout } from '@/components/Layout';
+import { withLayout } from '@/layout';
 import { NextPage } from 'next';
 
 const Modes: NextPage = (): JSX.Element => {
