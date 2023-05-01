@@ -1,10 +1,15 @@
 @import '@/styles/vars';
 
+@font-face {
+  font-family: 'BurbankBigRegular-Black';
+  src: url('../../fonts/BurbankSmall-Black.otf');
+}
+
 .h1 {
   margin: 1rem;
   font-family: 'BurbankBigRegular-Black';
   font-size: $xl4;
-  line-height: $xl4;
+  line-height: $xl4line;
   text-align: center;
   text-transform: uppercase;
 }
@@ -12,20 +17,20 @@
 .h2 {
   margin: 0;
   font-family: 'BurbankBigRegular-Black';
-  font-size: $xl;
-  line-height: $xl;
+  font-size: $xl3;
+  line-height: $xl3line;
 }
 
 .h3 {
   margin: 0;
   font-family: 'BurbankBigRegular-Black';
-  font-size: $xl;
-  line-height: $xl;
+  font-size: $xl2;
+  line-height: $xl2line;
 }
 
 .h4 {
   margin: 0;
   font-family: 'BurbankBigRegular-Black';
   font-size: $xl;
-  line-height: $xl;
+  line-height: $xlline;
 }

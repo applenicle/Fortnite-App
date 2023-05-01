@@ -4,7 +4,7 @@ export interface ModalProps {
   name: string;
   details: string;
   rarity: string;
-  activeItem: number;
+  activeItem: number | null;
   index: number;
   onSelectItem: (index: number | null) => void;
   children: React.ReactNode;

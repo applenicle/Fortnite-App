@@ -44,7 +44,8 @@ const BattlepassSlider = (): JSX.Element => {
   };
   const skeleton = [...new Array(20)].map((_: any, i: number) => <Skeleton key={i} />);
   const { locale } = useRouter();
-  const { data: battlepass, error, isLoading } = useGetBattlepassQuery(locale);
+  const { data, isLoading } = useGetBattlepassQuery(locale);
+  console.log(data);
   if (isLoading) {
     return (
       <ul className={styles.list}>
@@ -52,19 +53,13 @@ const BattlepassSlider = (): JSX.Element => {
       </ul>
     );
   }
-  if (error) {
-    return <>ERROR TRY RELOAD PAGE</>;
-  }
-  if (!battlepass) {
-    return <>NO DATA</>;
-  }
 
   return (
     <>
       <Title tag="h3">
-        {[battlepass].map((obj: any, i: number) => (
+        {[data].map((obj, i: number) => (
           <div key={i} className={styles.title}>
-            {obj?.displayInfo?.chapterSeason}
+            {obj?.displayInfo.chapterSeason}
             <div>
               Season ends:
               <span>
@@ -75,7 +70,7 @@ const BattlepassSlider = (): JSX.Element => {
         ))}
       </Title>
       <Slider {...settings}>
-        {battlepass?.rewards?.map((obj, i: number) => (
+        {data?.rewards?.map((obj, i: number) => (
           <li key={i} className={styles.content}>
             <div className={styles.item}>
               <div className={styles.img}>

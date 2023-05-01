@@ -2,12 +2,17 @@ import { useGetModesQuery } from '@/redux/services/FortniteApi';
 import { useRouter } from 'next/router';
 import styles from './Modes.module.scss';
 import Skeleton from '../Skeleton';
+import { modes } from '@/redux/types/Modes';
+
+type arr = {
+  enabled: boolean | string;
+  data: any;
+};
 
 const GameModes = (): JSX.Element => {
   const { locale } = useRouter();
   const { data, error, isLoading } = useGetModesQuery(locale);
   const skeleton = [...new Array(20)].map((_: any, i: number) => <Skeleton key={i} />);
-
   if (isLoading) {
     return <div className={styles.wrapper}>{skeleton}</div>;
   }
@@ -20,12 +25,11 @@ const GameModes = (): JSX.Element => {
 
   const dataSorted = data?.modes;
   let obj: any = {};
-  let arr: any = [];
-  [...new Set(dataSorted?.map((obj: any) => obj?.enabled))].map((item) => (obj[item] = []));
+  let arr: arr[] = [];
+  [...new Set(dataSorted?.map((obj) => obj?.enabled))].map((item: any) => (obj[item] = []));
   dataSorted?.map((item: any) => {
     obj[item?.enabled]?.push({ ...item });
   });
-
   Object.entries(obj).map(([enabled, data]) => {
     arr.push({ enabled, data });
   });
@@ -34,7 +38,7 @@ const GameModes = (): JSX.Element => {
       {arr?.map(({ enabled, data }, i: number) => (
         <div className={styles.wrapper} key={i}>
           {enabled == 'true'
-            ? data.map((obj) => (
+            ? data.map((obj: modes) => (
                 <div className={styles.item} key={obj.id}>
                   <div className={styles.image}>
                     <img src={obj.image} alt={obj.id} />

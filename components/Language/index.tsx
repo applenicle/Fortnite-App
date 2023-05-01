@@ -5,9 +5,9 @@ import { useAppDispatch, useAppSelector } from '@/hooks/redux';
 import { setIsOpen, setHighlighterIndex } from '@/redux/slices/Languages';
 import cn from 'classnames';
 import styles from './Language.module.scss';
-import React from 'react';
+import { Fragment } from 'react';
 
-const Language = () => {
+const Language = (): JSX.Element => {
   const { asPath, locale, push } = useRouter();
   const { isOpen, highlighterIndex, options } = useAppSelector((state) => state.LanguagesSlice);
   const dispatch = useAppDispatch();
@@ -17,7 +17,7 @@ const Language = () => {
       <span className={styles.value}>
         <FontAwesomeIcon icon={faEarthAmericas} />
         {options.map((option, i: number) => (
-          <React.Fragment key={i}>{locale == option.value ? option.label : ''}</React.Fragment>
+          <Fragment key={i}>{locale == option.value ? option.label : ''}</Fragment>
         ))}
       </span>
       <div className={styles.divider}></div>

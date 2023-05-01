@@ -2,6 +2,9 @@ import styles from './Stats.module.scss';
 import cn from 'classnames';
 
 const Stats = ({ name, global_stats }: StatsProps) => {
+  if (name == undefined) {
+    return <>Не найден ник</>;
+  }
   return (
     <div>
       <h3 className={styles.nickname}>{name}</h3>

@@ -1,9 +1,11 @@
-.sidebarInner {
-  display: grid;
-  align-content: start;
-  // gap: 20px;
-}
-.logo {
-  font-size: 1rem;
-  text-align: center;
+.sidebar {
+  &Inner {
+    display: grid;
+    align-content: start;
+  }
+  h2 {
+    margin-top: 8px;
+    text-transform: uppercase;
+    text-align: center;
+  }
 }

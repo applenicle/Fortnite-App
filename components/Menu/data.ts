@@ -31,10 +31,6 @@ export const navigation = [
         label: 'News',
         route: '/news',
       },
-      {
-        label: 'Achievements',
-        route: '/achievements',
-      },
     ],
   },
   {
@@ -42,12 +38,12 @@ export const navigation = [
     label: 'Game content',
     second: [
       {
-        label: 'Map',
-        route: '/map',
-      },
-      {
         label: 'Game modes',
         route: '/modes',
+      },
+      {
+        label: 'Achievements',
+        route: '/achievements',
       },
     ],
   },

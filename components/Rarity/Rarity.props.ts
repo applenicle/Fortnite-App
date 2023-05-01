@@ -1,4 +1,4 @@
 export interface RarityProps {
-  rarity: 'string';
+  rarity: string;
   children: React.ReactNode;
 }

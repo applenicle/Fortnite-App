@@ -5,29 +5,26 @@ import { useGetAllShopQuery } from '@/redux/services/FortniteApi';
 import Title from '../Title';
 import Timer from '../Timer';
 import Skeleton from '../Skeleton';
+import vbucks from '@/public/vbucks.png';
+import { shop } from '@/redux/types/Shop';
+
+type arr = {
+  id: string;
+  data: any;
+};
 
 const ShopList = () => {
   const { locale } = useRouter();
-  const { data: allShop, error, isLoading } = useGetAllShopQuery(locale);
-
+  const { data, isLoading } = useGetAllShopQuery(locale);
   const skeleton = [...new Array(20)].map((_: any, i: number) => <Skeleton key={i} />);
   if (isLoading) {
     return <div className={styles.list}>{skeleton}</div>;
   }
-  if (error) {
-    return <>ERROR TRY RELOAD PAGE</>;
-  }
-  if (!allShop) {
-    return <>NO DATA</>;
-  }
-
-  const dataShop = allShop?.shop;
+  const dataShop = data?.shop;
   let obj: any = {};
-  let arr: any = [];
-  const sortedID = [...new Set(dataShop?.map((obj: any) => obj?.section?.id))].map(
-    (item) => (obj[item] = []),
-  );
-  dataShop?.map((item: any) => {
+  let arr: arr[] = [];
+  [...new Set(dataShop?.map((obj) => obj?.section?.id))].map((item) => (obj[item] = []));
+  dataShop?.map((item) => {
     obj[item?.section?.id]?.push({ ...item });
   });
 
@@ -37,23 +34,17 @@ const ShopList = () => {
 
   return (
     <>
-      <Timer DailyTimer={allShop?.currentRotation?.Daily} />
+      <Timer DailyTimer={data?.currentRotation?.Daily} />
       {arr.map(({ data, id }) => (
         <div key={id}>
           <Title tag="h2">{data[0]?.section?.name}</Title>
           <ul className={styles.list}>
-            {data?.map((obj) => (
+            {data?.map((obj: shop) => (
               <li className={styles.item} key={obj.offerId}>
                 <Link className={styles.link} href={`shop/${obj.mainId}`}>
                   <img
                     className={styles.img}
-                    src={
-                      obj.displayAssets[0]?.background
-                      // obj.displayName.toLowerCase().includes(' bundle') ||
-                      // obj.displayName.toLowerCase().includes(' wear')
-                      // ? obj.displayAssets[0]?.background
-                      // : obj.granted[0]?.images?.background
-                    }
+                    src={obj.displayAssets[0]?.background}
                     alt={obj.mainId}
                   />
                 </Link>
@@ -63,7 +54,7 @@ const ShopList = () => {
                     <p className={styles.type}>{obj.granted[0].type.name}</p>
                   </div>
                   <div className={styles.price}>
-                    <img src="https://fortnite-api.com/images/vbuck.png" alt="vbucks" />
+                    <img src={vbucks.src} alt="vbucks" />
                     <span>{obj.price?.finalPrice}</span>
                   </div>
                 </div>

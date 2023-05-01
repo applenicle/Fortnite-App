@@ -3,28 +3,20 @@ import { useRouter } from 'next/router';
 import { useState } from 'react';
 import Modal from '../Modal';
 import styles from './CrewCard.module.scss';
-import moment from 'moment';
 import Skeleton from '../Skeleton';
+import { format } from 'date-fns';
 
 const CrewCard = () => {
+  const { locale } = useRouter();
+  const { data, isLoading } = useGetCrewQuery(locale);
   const [activeItem, setActiveItem] = useState<number | null>(null);
   const onSelectItem = (index: number | null) => {
     setActiveItem(index);
   };
-  const { locale } = useRouter();
-  const { data, error, isLoading } = useGetCrewQuery(locale);
   const skeleton = [...new Array(20)].map((_: any, i: number) => <Skeleton key={i} />);
-
   if (isLoading) {
     return <div className={styles.crew}>{skeleton}</div>;
   }
-  if (error) {
-    <>Error</>;
-  }
-  if (!data) {
-    <>No Data</>;
-  }
-
   return (
     <ul className={styles.crew}>
       {data?.history.map((obj, i: number) => (
@@ -33,7 +25,7 @@ const CrewCard = () => {
             <img src={obj.rewards[0].item?.images.background} alt={obj?.rewards[0].item?.name} />
             <h3>{obj.rewards[0].item.name}</h3>
           </div>
-          <div className={styles.data}>{moment(obj.date).format('MMMM YYYY')}</div>
+          <div className={styles.data}>{format(new Date(obj.date), 'MMMM yyyy')}</div>
           <Modal
             details={obj.rewards[0].item.description}
             activeItem={activeItem}

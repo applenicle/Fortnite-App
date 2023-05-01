@@ -5,29 +5,27 @@ import { Fragment } from 'react';
 import NoItem from '@/public/NoItem.png';
 import Rarity from '../Rarity';
 import Skeleton from '../Skeleton';
-import { checkData } from '@/hooks/Bounce';
+import { weapons } from '@/redux/types/Weapons';
+
+type arr = {
+  name: string;
+  data: any;
+};
 
 const WeaponsItem = (): JSX.Element => {
   const { locale } = useRouter();
-  const { data, error, isLoading } = useGetWeaponsQuery(locale);
-
+  const { data, isLoading } = useGetWeaponsQuery(locale);
   const skeleton = [...new Array(20)].map((_: any, i: number) => <Skeleton key={i} />);
   if (isLoading) {
     return <table className={styles.table}>{skeleton}</table>;
   }
-  if (error) {
-    return <>ERROR TRY RELOAD PAGE</>;
-  }
-  if (!data) {
-    return <>NO DATA</>;
-  }
 
   const dataWeapon = data?.weapons;
   let obj: any = {};
-  let arr: any = [];
-  [...new Set(dataWeapon?.map((obj: any) => obj?.name))].map((item) => (obj[item] = []));
+  let arr: arr[] = [];
+  [...new Set(dataWeapon?.map((obj) => obj?.name))].map((item) => (obj[item] = []));
 
-  dataWeapon?.map((item: any) => {
+  dataWeapon?.map((item) => {
     obj[item?.name]?.push({ ...item });
   });
 
@@ -55,7 +53,7 @@ const WeaponsItem = (): JSX.Element => {
             <tr>
               <td rowSpan={data.length + 1}>{name}</td>
             </tr>
-            {data.map((obj) => (
+            {data.map((obj: weapons) => (
               <tr key={obj.id}>
                 <td>
                   <img

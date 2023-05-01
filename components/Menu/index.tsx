@@ -8,7 +8,7 @@ import { setFistIndex, setIsOpen } from '@/redux/slices/Menu';
 import { navigation } from './data';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
-export const Menu = (): JSX.Element => {
+const Menu = (): JSX.Element => {
   const { locale, pathname } = useRouter();
 
   const dispatch = useAppDispatch();
@@ -39,7 +39,7 @@ export const Menu = (): JSX.Element => {
                 <li key={i}>
                   <Link
                     className={cn(styles.linkSecond, {
-                      [styles.LinkSecondActive]: pathname === secondMenu.route,
+                      [styles.linkSecondActive]: pathname === secondMenu.route,
                     })}
                     locale={locale}
                     href={secondMenu.route}>
@@ -54,3 +54,5 @@ export const Menu = (): JSX.Element => {
     </>
   );
 };
+
+export default Menu;

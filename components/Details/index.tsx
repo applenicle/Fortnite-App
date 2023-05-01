@@ -3,8 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
 import moment from 'moment';
 import styles from './Details.module.scss';
-import { DetailsProps } from './Details.props';
 import Rarity from '../Rarity';
+import { item } from '@/redux/types/Details';
 
 const Details = ({
   added,
@@ -20,7 +20,7 @@ const Details = ({
   series,
   shopHistory,
   type,
-}: DetailsProps) => {
+}: item) => {
   return (
     <div className={styles.details}>
       <div className={styles.details__img}>
