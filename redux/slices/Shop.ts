@@ -1,8 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Status, ShopState, IShop } from '../types/IShop';
+import { Shop, Status, ShopSliceType } from '../types/Shop';
 
-export const initialState: ShopState = {
-  // items: IShop[],
+export const initialState: ShopSliceType = {
   items: [],
   error: '',
   status: Status.LOADING,
@@ -12,7 +11,7 @@ export const ShopSlice = createSlice({
   name: 'Items',
   initialState,
   reducers: {
-    setItems: (state, action: PayloadAction<any>) => {
+    setItems: (state, action: PayloadAction<Shop[]>) => {
       state.items = action.payload;
     },
   },
