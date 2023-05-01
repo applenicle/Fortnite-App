@@ -4,7 +4,6 @@ import { useGetBattlepassQuery } from '@/redux/services/FortniteApi';
 import { useRouter } from 'next/router';
 import Skeleton from '../Skeleton';
 import Title from '../Title';
-import moment from 'moment';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -45,7 +44,6 @@ const BattlepassSlider = (): JSX.Element => {
   const skeleton = [...new Array(20)].map((_: any, i: number) => <Skeleton key={i} />);
   const { locale } = useRouter();
   const { data, isLoading } = useGetBattlepassQuery(locale);
-  console.log(data);
   if (isLoading) {
     return (
       <ul className={styles.list}>
@@ -53,19 +51,12 @@ const BattlepassSlider = (): JSX.Element => {
       </ul>
     );
   }
-
   return (
     <>
       <Title tag="h3">
         {[data].map((obj, i: number) => (
           <div key={i} className={styles.title}>
             {obj?.displayInfo.chapterSeason}
-            <div>
-              Season ends:
-              <span>
-                {moment(obj?.seasonDates?.end).endOf('minutes').fromNow(obj?.seasonDates?.begin)}
-              </span>
-            </div>
           </div>
         ))}
       </Title>
