@@ -19,7 +19,7 @@ const PlayerId: NextPage = (): JSX.Element => {
 
   return (
     <>
-      {[data].map((obj, i: number) => (
+      {[data].map((obj: any, i: number) => (
         <Stats key={i} {...obj} />
       ))}
     </>

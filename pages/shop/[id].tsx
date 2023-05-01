@@ -17,7 +17,7 @@ const ShopDetails: NextPage = (): JSX.Element => {
 
   return (
     <>
-      {[data?.item].map((obj) => (
+      {[data?.item].map((obj: any) => (
         <Details key={obj?.id} {...obj} />
       ))}
     </>
