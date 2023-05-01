@@ -1,7 +1,8 @@
+import { UserName } from '@/redux/types/UserName';
 import styles from './Stats.module.scss';
 import cn from 'classnames';
 
-const Stats = ({ name, global_stats }: StatsProps) => {
+const Stats = ({ name, global_stats }: UserName) => {
   if (name == undefined) {
     return <>Не найден ник</>;
   }
