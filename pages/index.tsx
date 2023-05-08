@@ -1,12 +1,14 @@
-import { NextPage } from 'next/types';
+import { NewsComponent, Title } from '@/components';
+import { NextPage } from 'next';
 import { withLayout } from '@/layout';
 
-const Home: NextPage = (): JSX.Element => {
+const News: NextPage = (): JSX.Element => {
   return (
     <>
-      <div></div>
+      <Title tag="h1">Game news</Title>
+      <NewsComponent />
     </>
   );
 };
 
-export default withLayout(Home);
+export default withLayout(News);
