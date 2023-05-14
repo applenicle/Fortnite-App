@@ -9,6 +9,9 @@
 .img {
   position: relative;
   h3 {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
     font-size: $xl2;
     position: absolute;
     text-align: center;

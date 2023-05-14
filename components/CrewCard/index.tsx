@@ -1,12 +1,14 @@
+import useNextBlurhash from 'use-next-blurhash';
 import { useGetCrewQuery } from '@/redux/services/FortniteApi';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import Modal from '../Modal';
 import styles from './CrewCard.module.scss';
 import Skeleton from '../Skeleton';
-import { format } from 'date-fns';
+import { format, parseISO } from 'date-fns';
 
 const CrewCard = () => {
+  const [blurDataUrl] = useNextBlurhash('LEHV6nWB2yk8pyo0adR*.7kCMdnj');
   const { locale } = useRouter();
   const { data, isLoading } = useGetCrewQuery(locale);
   const [activeItem, setActiveItem] = useState<number | null>(null);
@@ -22,10 +24,15 @@ const CrewCard = () => {
       {data?.history.map((obj, i: number) => (
         <li key={obj.date}>
           <div className={styles.img} onClick={() => setActiveItem(i)}>
-            <img src={obj.rewards[0].item?.images.background} alt={obj?.rewards[0].item?.name} />
+            <img
+              // placeholder="blur"
+              // blurDataURL={blurDataUrl}
+              src={obj?.rewards[0].item?.images.background}
+              alt={obj?.rewards[0].item?.name}
+            />
             <h3>{obj.rewards[0].item.name}</h3>
           </div>
-          <div className={styles.data}>{format(new Date(obj.date), 'MMMM yyyy')}</div>
+          <div className={styles.data}>{format(parseISO(obj.date), 'MMMM yyyy')}</div>
           <Modal
             details={obj.rewards[0].item.description}
             activeItem={activeItem}

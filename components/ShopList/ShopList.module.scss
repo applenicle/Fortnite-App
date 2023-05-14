@@ -30,9 +30,12 @@
   width: 100%;
 }
 .name {
-  margin: 5px 0;
+  margin: 5px 10px;
   font-size: $xl;
   text-transform: uppercase;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 .type {
   margin: 5px 0;

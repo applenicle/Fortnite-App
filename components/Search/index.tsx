@@ -1,19 +1,24 @@
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styles from './Search.module.scss';
-import { useState, KeyboardEvent, useRef } from 'react';
+import { useState, KeyboardEvent, useRef, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Button from '../Button';
 import { useGetUserNameQuery } from '@/redux/services/FortniteApi';
 import { useDebounce } from '@/hooks/useDebounce';
 
 const Search = (): JSX.Element => {
-  const router = useRouter();
   const [searchText, setSearchText] = useState<string>('');
-  const ref = useRef<HTMLInputElement>(null);
-  const params = [searchText, router.locale];
+  const [drop, setDrop] = useState(false);
+  const debounce = useDebounce(searchText, 400);
+  const router = useRouter();
+  const params = [debounce, router.locale];
   const { data } = useGetUserNameQuery(params);
-  useDebounce(searchText, 1000);
+
+  useEffect(() => {
+    setDrop(debounce.length > 0 && data?.result == true);
+  }, [debounce]);
+
   const goToSearch = (e: any, value: string) => {
     e.preventDefault();
     router.push({
@@ -31,7 +36,6 @@ const Search = (): JSX.Element => {
       {[data?.account_id].map((obj: any, i: number) => (
         <form key={i} onSubmit={(e) => goToSearch(e, obj)} className={styles.search} role="search">
           <input
-            ref={ref}
             value={searchText}
             placeholder="Enter your fortnite name..."
             type="text"
@@ -41,6 +45,7 @@ const Search = (): JSX.Element => {
           <Button appearance="active">
             <FontAwesomeIcon icon={faSearch} />
           </Button>
+          {/* {drop == falase <>dddd</>} */}
         </form>
       ))}
     </>

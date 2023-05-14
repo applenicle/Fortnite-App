@@ -16,7 +16,7 @@ export const fortniteApi = createApi({
   reducerPath: 'fortniteApi',
   // refetchOnFocus: true,
   baseQuery: fetchBaseQuery({
-    baseUrl: `https://fortniteapi.io`,
+    baseUrl: process.env.NEXT_PUBLIC_FORTNITE_LINK,
     prepareHeaders: (headers) => {
       headers.set('Authorization', `${process.env.NEXT_PUBLIC_FORTNITE_API_KEY}`);
       return headers;

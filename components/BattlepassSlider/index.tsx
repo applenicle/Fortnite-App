@@ -10,8 +10,8 @@ import 'slick-carousel/slick/slick-theme.css';
 
 const BattlepassSlider = (): JSX.Element => {
   const settings = {
-    dots: false,
-    arrows: true,
+    dots: true,
+    arrows: false,
     infinite: true,
     speed: 500,
     cssEase: 'linear',
