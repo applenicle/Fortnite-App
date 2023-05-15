@@ -2,6 +2,7 @@ import styles from './AchievementCard.module.scss';
 import { useGetAchievementsQuery } from '@/redux/services/FortniteApi';
 import { useRouter } from 'next/router';
 import Skeleton from '../Skeleton';
+import Image from 'next/image';
 
 const AchievementCard = (): JSX.Element => {
   const { locale } = useRouter();
@@ -19,7 +20,13 @@ const AchievementCard = (): JSX.Element => {
             <div className={styles.bar}></div>
             <div className={styles.content}>
               <div className={styles.image}>
-                <img src={obj.image} alt={obj.internalId} />
+                <Image
+                  src={obj.image}
+                  alt={obj.internalId}
+                  height={500}
+                  width={500}
+                  style={{ height: 'auto', width: '100%' }}
+                />
               </div>
               <div className={styles.text}>
                 <h3>{obj.name}</h3>

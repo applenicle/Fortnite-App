@@ -3,6 +3,7 @@ import styles from './News.module.scss';
 import { useRouter } from 'next/router';
 import Skeleton from '../Skeleton';
 import { format } from 'date-fns';
+import Image from 'next/image';
 
 const NewsComponent = (): JSX.Element => {
   const { locale } = useRouter();
@@ -17,7 +18,13 @@ const NewsComponent = (): JSX.Element => {
       {data?.news.map((news) => (
         <div className={styles.item} key={news.id}>
           <div>
-            <img src={news.image} alt={news.id} />
+            <Image
+              src={news.image}
+              alt={news.id}
+              height={221}
+              width={339}
+              style={{ height: 'auto', width: '100%' }}
+            />
           </div>
           <div className={styles.text}>
             <h3>{news.title}</h3>

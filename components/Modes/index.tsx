@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import styles from './Modes.module.scss';
 import Skeleton from '../Skeleton';
 import { modes } from '@/redux/types/Modes';
+import Image from 'next/image';
 
 type arr = {
   enabled: boolean | string;
@@ -41,14 +42,26 @@ const GameModes = (): JSX.Element => {
             ? data.map((obj: modes) => (
                 <div className={styles.item} key={obj.id}>
                   <div className={styles.image}>
-                    <img src={obj.image} alt={obj.id} />
+                    <Image
+                      src={obj.image}
+                      alt={obj.id}
+                      height={232}
+                      width={413}
+                      style={{ height: 'auto', width: '100%' }}
+                    />
                   </div>
                   <div className={styles.title}>
                     {obj.matchmakingIcon == null ? (
                       <h3>{obj.name}</h3>
                     ) : (
                       <>
-                        <img src={obj.matchmakingIcon} alt={obj.matchmakingIcon} />
+                        <Image
+                          src={obj.matchmakingIcon}
+                          alt={obj.matchmakingIcon}
+                          height={32}
+                          width={32}
+                          style={{ height: 'auto', width: '100%' }}
+                        />
                         <h3>{obj.name}</h3>
                       </>
                     )}

@@ -1,8 +1,16 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  images: {
+    domains: [
+      'media.fortniteapi.io',
+      'cdn2.unrealengine.com',
+      'cdn-live.prm.ol.epicgames.com',
+      'static-cdn.jtvnw.net',
+    ],
+  },
   i18n: {
-    locales : [
+    locales: [
       'en',
       'ar',
       'de',
@@ -21,7 +29,7 @@ const nextConfig = {
     ],
     defaultLocale: 'en',
     localeDetection: true,
-  }
-}
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

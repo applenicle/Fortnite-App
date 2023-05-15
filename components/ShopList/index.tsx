@@ -7,6 +7,7 @@ import Timer from '../Timer';
 import Skeleton from '../Skeleton';
 import vbucks from '@/public/vbucks.png';
 import { shop } from '@/redux/types/Shop';
+import Image from 'next/image';
 
 type arr = {
   id: string;
@@ -42,10 +43,13 @@ const ShopList = () => {
             {data?.map((obj: shop) => (
               <li className={styles.item} key={obj.offerId}>
                 <Link className={styles.link} href={`shop/${obj.mainId}`}>
-                  <img
-                    className={styles.img}
+                  <Image
                     src={obj.displayAssets[0]?.background}
                     alt={obj.mainId}
+                    height={221}
+                    width={339}
+                    style={{ height: 'auto', width: '100%' }}
+                    className={styles.img}
                   />
                 </Link>
                 <div className={styles.content}>
@@ -54,7 +58,7 @@ const ShopList = () => {
                     <p className={styles.type}>{obj.granted[0].type.name}</p>
                   </div>
                   <div className={styles.price}>
-                    <img src={vbucks.src} alt="vbucks" />
+                    <Image src={vbucks.src} alt="vbucks" height={30} width={30} />
                     <span>{obj.price?.finalPrice}</span>
                   </div>
                 </div>

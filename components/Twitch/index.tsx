@@ -3,6 +3,7 @@ import styles from './Twitch.module.scss';
 import { useGetTwitchQuery } from '@/redux/services/FortniteApi';
 import Skeleton from '../Skeleton';
 import { format } from 'date-fns';
+import Image from 'next/image';
 
 const Twitch = (): JSX.Element => {
   const { data, isLoading } = useGetTwitchQuery(null);
@@ -15,7 +16,7 @@ const Twitch = (): JSX.Element => {
     <div className={styles.wrapper}>
       {data?.drops.map((obj) => (
         <div key={obj.name} className={styles.item}>
-          <img src={obj.gameArtUrl} alt={obj.name} />
+          <Image src={obj.gameArtUrl} alt={obj.name} height={120} width={120} />
           <div className={styles.content}>
             <div className={styles.timer}>
               {format(new Date(obj.startDate), 'MMM d yyyy')}-

@@ -1,4 +1,5 @@
 import styles from './BattlepassSlider.module.scss';
+import Image from 'next/image';
 import cn from 'classnames';
 import { useGetBattlepassQuery } from '@/redux/services/FortniteApi';
 import { useRouter } from 'next/router';
@@ -65,7 +66,13 @@ const BattlepassSlider = (): JSX.Element => {
           <li key={i} className={styles.content}>
             <div className={styles.item}>
               <div className={styles.img}>
-                <img src={obj.item.images.background} alt="bg" />
+                <Image
+                  src={obj.item.images.background}
+                  alt={obj.item.name}
+                  height={500}
+                  width={500}
+                  style={{ height: 'auto', width: '100%' }}
+                />
               </div>
               <div className={styles.text}>
                 <div className={styles.name}>

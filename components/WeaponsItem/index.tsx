@@ -6,6 +6,7 @@ import NoItem from '@/public/NoItem.png';
 import Rarity from '../Rarity';
 import Skeleton from '../Skeleton';
 import { weapons } from '@/redux/types/Weapons';
+import Image from 'next/image';
 
 type arr = {
   name: string;
@@ -56,9 +57,12 @@ const WeaponsItem = (): JSX.Element => {
             {data.map((obj: weapons) => (
               <tr key={obj.id}>
                 <td>
-                  <img
+                  <Image
                     src={obj.images.background == null ? NoItem.src : obj.images.background}
                     alt={obj.id}
+                    height={128}
+                    width={128}
+                    style={{ height: 'auto', width: '100%' }}
                   />
                 </td>
                 <td>

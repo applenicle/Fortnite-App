@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Image from 'next/image';
 import styles from './FishCard.module.scss';
 import { useGetFishQuery } from '@/redux/services/FortniteApi';
 import { useRouter } from 'next/router';
@@ -21,8 +22,14 @@ const FishCard = (): JSX.Element => {
     <ul className={styles.fish}>
       {data?.fish.map((obj, i: number) => (
         <li key={obj.id}>
-          <div onClick={() => onSelectItem(i)}>
-            <img className={styles.img} src={obj.image} alt={obj.id} />
+          <div className={styles.img} onClick={() => onSelectItem(i)}>
+            <Image
+              src={obj?.image}
+              alt={obj?.id}
+              height={500}
+              width={500}
+              style={{ height: 'auto', width: '100%' }}
+            />
           </div>
           <Modal
             imageSrc={obj.image}
