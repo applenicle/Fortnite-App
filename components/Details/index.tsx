@@ -5,6 +5,10 @@ import moment from 'moment';
 import styles from './Details.module.scss';
 import Rarity from '../Rarity';
 import { item } from '@/redux/types/Details';
+import { options } from '../Language/languageList';
+import { format } from 'date-fns';
+import { useRouter } from 'next/router';
+import { Fragment } from 'react';
 
 const Details = ({
   added,
@@ -21,6 +25,7 @@ const Details = ({
   shopHistory,
   type,
 }: item) => {
+  const { locale } = useRouter();
   return (
     <div className={styles.details}>
       <div className={styles.details__img}>
@@ -46,23 +51,49 @@ const Details = ({
           <li className={styles.details__item}>{series?.name}</li>
           <li className={styles.details__item}>
             <span>Release date: </span>
-            {moment(releaseDate).format('ll')}
+            {options.map((option, i: number) => (
+              <span key={i}>
+                {locale == option.value
+                  ? format(new Date(releaseDate), 'dd MMMM yyyy', { locale: option.dateFns })
+                  : ''}
+              </span>
+            ))}
           </li>
           <li className={styles.details__item}>
             <span>Last seen: </span>
-            {moment(lastAppearance).format('ll')}
+            {options.map((option, i: number) => (
+              <span key={i}>
+                {locale == option.value
+                  ? format(new Date(lastAppearance), 'dd MMMM yyyy', { locale: option.dateFns })
+                  : ''}
+              </span>
+            ))}
           </li>
           <li className={styles.details__item}>{grants?.[0]?.description}</li>
           <li className={styles.details__item}>
             <span>Added: </span>
-            {moment(added?.date).format('ll')}
+            {options.map((option, i: number) => (
+              <span key={i}>
+                {locale == option.value
+                  ? format(new Date(added?.date), 'dd MMMM yyyy', { locale: option.dateFns })
+                  : ''}
+              </span>
+            ))}
           </li>
           <li className={styles.details__item}>
             History:
             <select>
               {shopHistory
                 ?.map((obj: string, i: number) => (
-                  <option key={i}>{moment(obj).format('ll')}</option>
+                  <option key={i}>
+                    {options.map((option, i: number) => (
+                      <span key={i}>
+                        {locale == option.value
+                          ? format(new Date(obj), 'dd MMMM yyyy', { locale: option.dateFns })
+                          : ''}
+                      </span>
+                    ))}
+                  </option>
                 ))
                 .reverse()}
             </select>

@@ -1,11 +1,12 @@
 import { useGetCrewQuery } from '@/redux/services/FortniteApi';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { Fragment, useState } from 'react';
 import Modal from '../Modal';
 import styles from './CrewCard.module.scss';
 import Skeleton from '../Skeleton';
-import { format, parseISO } from 'date-fns';
+import { format } from 'date-fns';
 import Image from 'next/image';
+import { options } from '../Language/languageList';
 
 const CrewCard = () => {
   const { locale } = useRouter();
@@ -32,7 +33,15 @@ const CrewCard = () => {
             />
             <h3>{obj.rewards[0].item.name}</h3>
           </div>
-          <div className={styles.data}>{format(parseISO(obj.date), 'MMMM yyyy')}</div>
+          <div className={styles.data}>
+            {options.map((option, i: number) => (
+              <div key={i}>
+                {locale == option.value
+                  ? format(new Date(obj.date), 'MMMM yyyy', { locale: option.dateFns })
+                  : ''}
+              </div>
+            ))}
+          </div>
           <Modal
             details={obj.rewards[0].item.description}
             activeItem={activeItem}

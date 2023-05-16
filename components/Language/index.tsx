@@ -6,10 +6,11 @@ import { setIsOpen, setHighlighterIndex } from '@/redux/slices/Languages';
 import cn from 'classnames';
 import styles from './Language.module.scss';
 import { Fragment } from 'react';
+import { options } from './languageList';
 
 const Language = (): JSX.Element => {
   const { asPath, locale, push } = useRouter();
-  const { isOpen, highlighterIndex, options } = useAppSelector((state) => state.LanguagesSlice);
+  const { isOpen, highlighterIndex } = useAppSelector((state) => state.LanguagesSlice);
   const dispatch = useAppDispatch();
 
   return (

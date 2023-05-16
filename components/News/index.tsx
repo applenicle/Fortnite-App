@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import Skeleton from '../Skeleton';
 import { format } from 'date-fns';
 import Image from 'next/image';
+import { options } from '../Language/languageList';
 
 const NewsComponent = (): JSX.Element => {
   const { locale } = useRouter();
@@ -12,10 +13,9 @@ const NewsComponent = (): JSX.Element => {
   if (isLoading) {
     return <div className={styles.wrapper}>{skeleton}</div>;
   }
-
   return (
     <div className={styles.wrapper}>
-      {data?.news.map((news) => (
+      {data?.news.map((news, i) => (
         <div className={styles.item} key={news.id}>
           <div>
             <Image
@@ -28,7 +28,13 @@ const NewsComponent = (): JSX.Element => {
           </div>
           <div className={styles.text}>
             <h3>{news.title}</h3>
-            <div>{format(new Date(news.date), 'MMMM d yyyy')}</div>
+            {options.map((option, i: number) => (
+              <div key={i}>
+                {locale == option.value
+                  ? format(new Date(news.date), 'dd MMMM yyyy', { locale: option.dateFns })
+                  : ''}
+              </div>
+            ))}
             <p>{news.body}</p>
           </div>
         </div>

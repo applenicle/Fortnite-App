@@ -31,8 +31,9 @@ const Header = ({ className, ...props }: HeaderProps): JSX.Element => {
         </div>
         <Search />
         <ul className={styles.list}>
-          {navigation.map((menu, i) => (
+          {navigation.map((menu, i: number) => (
             <li
+              key={i}
               onClick={() => checkIndex(i)}
               className={cn(styles.link, {
                 [styles.linkActive]: firstIndex == i && isOpen,
