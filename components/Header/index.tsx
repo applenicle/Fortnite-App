@@ -24,7 +24,9 @@ const Header = ({ className, ...props }: HeaderProps): JSX.Element => {
   return (
     <header className={cn(className, styles.header)} {...props}>
       <nav className={styles.nav}>
-        <Title tag="h2">Fortnite Stats</Title>
+        <div className={styles.logo}>
+          <Title tag="h2" >Fortnite Stats</Title>
+        </div>
         <div className={styles.multi}>
           <Theme />
           <Language />

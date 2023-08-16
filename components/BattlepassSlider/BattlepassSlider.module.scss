@@ -1,5 +1,37 @@
 @import '@/styles/vars';
 
+
+.dots{
+  margin-top: 20px;
+  display: inline-block;
+  text-align: center;
+  :global(li.slick-active) button  {
+    background-color: var(--text--hover);
+  }
+  li{
+    list-style: none;
+    cursor: pointer;
+    display: inline-block;
+    margin: 0 3px;
+    padding: 0;
+    button{
+      border: none;
+      background: var(--text--color);
+      opacity: .7;
+      color: transparent;
+      cursor: pointer;
+      display: block;
+      height: 10px;
+      width: 10px;
+      border-radius: 7.5px;
+      &:hover, :focus{
+        background: var(--hover);
+        outline: 0;
+      }
+    }
+  }
+}
+
 .list {
   display: grid;
   grid-gap: 1rem;

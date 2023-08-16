@@ -30,6 +30,7 @@ const FishCard = (): JSX.Element => {
               width={500}
               style={{ height: 'auto', width: '100%' }}
             />
+            <h3 className={styles.title}>{obj.name}</h3>
           </div>
           <Modal
             imageSrc={obj.image}

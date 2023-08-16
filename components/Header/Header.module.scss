@@ -4,6 +4,10 @@
   display: none;
   background: var(--sidebar-background-color);
 }
+.logo {
+  cursor: pointer;
+}
+
 .nav {
   display: grid;
   justify-items: center;

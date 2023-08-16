@@ -17,10 +17,6 @@ const Modal = ({
 }: ModalProps): JSX.Element => {
   return (
     <div
-      onClick={(e) => {
-        e.stopPropagation();
-        onSelectItem(null);
-      }}
       className={activeItem === index ? `${styles.modal} ${styles.modal__open}` : styles.modal}>
       <div className={styles.inner}>
         <div className={styles.close}>

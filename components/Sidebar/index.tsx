@@ -10,7 +10,9 @@ import Menu from '../Menu';
 const Sidebar = ({ className, ...props }: SidebarProps): JSX.Element => {
   return (
     <div className={cn(className, styles.sidebar)} {...props}>
-      <Title tag="h2">Fortnite Stats</Title>
+      <div className={styles.logo}>
+          <Title tag="h2" >Fortnite Stats</Title>
+      </div>
       <Search />
       <Menu />
       <Language />

@@ -21,8 +21,8 @@ const NewsComponent = (): JSX.Element => {
             <Image
               src={news.image}
               alt={news.id}
-              height={221}
-              width={339}
+              height={270}
+              width={475}
               style={{ height: 'auto', width: '100%' }}
             />
           </div>

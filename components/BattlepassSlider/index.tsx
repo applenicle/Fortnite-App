@@ -10,38 +10,6 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
 const BattlepassSlider = (): JSX.Element => {
-  const settings = {
-    dots: true,
-    arrows: false,
-    infinite: true,
-    speed: 500,
-    cssEase: 'linear',
-    slidesToShow: 5,
-    slidesToScroll: 5,
-    responsive: [
-      {
-        breakpoint: 1200,
-        settings: {
-          slidesToShow: 4,
-          slidesToScroll: 4,
-        },
-      },
-      {
-        breakpoint: 1000,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
-        },
-      },
-      {
-        breakpoint: 800,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-        },
-      },
-    ],
-  };
   const skeleton = [...new Array(20)].map((_: any, i: number) => <Skeleton key={i} />);
   const { locale } = useRouter();
   const { data, isLoading } = useGetBattlepassQuery(locale);
@@ -61,7 +29,7 @@ const BattlepassSlider = (): JSX.Element => {
           </div>
         ))}
       </Title>
-      <Slider {...settings}>
+      <Slider {...settingsWithModules}>
         {data?.rewards?.map((obj, i: number) => (
           <li key={i} className={styles.content}>
             <div className={styles.item}>
@@ -108,3 +76,47 @@ const BattlepassSlider = (): JSX.Element => {
 };
 
 export default BattlepassSlider;
+
+
+const settings = {
+  dots: true,
+  autoplay: true,
+  autoplaySpeed: 3000,
+  infinite: true,
+  initialSlide: 0,
+  adaptiveHeight: true,
+  arrows: false,
+  dotsClass: "dots",
+  speed: 500,
+  cssEase: 'linear',
+  slidesToShow: 5,
+  slidesToScroll: 5,
+  responsive: [
+    {
+      breakpoint: 1200,
+      settings: {
+        slidesToShow: 4,
+        slidesToScroll: 4,
+      },
+    },
+    {
+      breakpoint: 1000,
+      settings: {
+        slidesToShow: 3,
+        slidesToScroll: 3,
+      },
+    },
+    {
+      breakpoint: 800,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 2,
+      },
+    },
+  ],
+};
+
+const settingsWithModules = {
+  ...settings,
+  dotsClass: styles.dots
+};

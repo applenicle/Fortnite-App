@@ -46,8 +46,8 @@ const ShopList = () => {
                   <Image
                     src={obj.displayAssets[0]?.background}
                     alt={obj.mainId}
-                    height={221}
-                    width={339}
+                    height={500}
+                    width={500}
                     style={{ height: 'auto', width: '100%' }}
                     className={styles.img}
                   />

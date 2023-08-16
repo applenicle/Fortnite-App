@@ -1,7 +1,7 @@
 @import '@/styles/vars';
 
 .fish {
-  grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
   display: grid;
   grid-gap: 1rem;
   margin: 1rem 0;
@@ -12,4 +12,9 @@
   background: var(--sidebar-search-background-color);
   padding: 5px;
   width: 100%;
+}
+.title{
+  text-align: center;
+  font-size: $lg;
+  line-height: $lgline;
 }
