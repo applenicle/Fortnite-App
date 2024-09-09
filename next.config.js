@@ -7,6 +7,7 @@ const nextConfig = {
       'cdn2.unrealengine.com',
       'cdn-live.prm.ol.epicgames.com',
       'static-cdn.jtvnw.net',
+      'static-assets-prod.s3.amazonaws.com',
     ],
   },
   i18n: {

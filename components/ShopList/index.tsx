@@ -43,14 +43,16 @@ const ShopList = () => {
             {data?.map((obj: shop) => (
               <li className={styles.item} key={obj.offerId}>
                 <Link className={styles.link} href={`shop/${obj.mainId}`}>
-                  <Image
-                    src={obj.displayAssets[0]?.background}
-                    alt={obj.mainId}
-                    height={500}
-                    width={500}
-                    style={{ height: 'auto', width: '100%' }}
-                    className={styles.img}
-                  />
+                  {obj.displayAssets[0]?.background ? (
+                    <Image
+                      src={obj.displayAssets[0]?.background}
+                      alt={obj.mainId}
+                      height={500}
+                      width={500}
+                      style={{ height: 'auto', width: '100%' }}
+                      className={styles.img}
+                    />
+                  ) : null}
                 </Link>
                 <div className={styles.content}>
                   <div>

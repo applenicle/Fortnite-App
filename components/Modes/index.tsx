@@ -42,26 +42,30 @@ const GameModes = (): JSX.Element => {
             ? data.map((obj: modes) => (
                 <div className={styles.item} key={obj.id}>
                   <div className={styles.image}>
-                    <Image
-                      src={obj.image}
-                      alt={obj.id}
-                      height={232}
-                      width={413}
-                      style={{ height: 'auto', width: '100%' }}
-                    />
+                    {obj.image ? (
+                      <Image
+                        src={obj.image}
+                        alt={obj.id}
+                        height={232}
+                        width={413}
+                        style={{ height: 'auto', width: '100%' }}
+                      />
+                    ) : null}
                   </div>
                   <div className={styles.title}>
                     {obj.matchmakingIcon == null ? (
                       <h3>{obj.name}</h3>
                     ) : (
                       <>
-                        <Image
-                          src={obj.matchmakingIcon}
-                          alt={obj.matchmakingIcon}
-                          height={32}
-                          width={32}
-                          style={{ height: 'auto', width: '100%' }}
-                        />
+                        {obj.matchmakingIcon ? (
+                          <Image
+                            src={obj.matchmakingIcon}
+                            alt={obj.matchmakingIcon}
+                            height={32}
+                            width={32}
+                            style={{ height: 'auto', width: '100%' }}
+                          />
+                        ) : null}
                         <h3>{obj.name}</h3>
                       </>
                     )}
